@@ -6,7 +6,7 @@
             <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/'.Auth::user()->avatar) }}">
           @else
             <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
-          @endif          
+          @endif
           <span class="brand-text font-weight-light">Logo</span>
         </a>
 
@@ -20,7 +20,7 @@
             <div class="info">
               <a href="#" class="d-block">{{Auth::user()->name}}</a>
             </div>
-          </div>        
+          </div>
 
           <!-- Sidebar Menu -->
           <nav class="mt-2">
@@ -43,11 +43,11 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                    <a href="#" class="nav-link">
                       <i class="fa fa-list-ul" aria-hidden="true"></i>
                       <p>Listar</p>
                     </a>
-                  </li>                                   
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -66,14 +66,14 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                    <a href="/show" class="nav-link">
                       <i class="fa fa-list-ul" aria-hidden="true"></i>
                       <p>Listar</p>
                     </a>
-                  </li>                                   
+                  </li>
                 </ul>
-              </li>              
-              
+              </li>
+
               <li class="nav-header">EXAMPLES</li>
               <li class="nav-item">
                 <a href="pages/calendar.html" class="nav-link">
@@ -92,7 +92,7 @@
                   </p>
                 </a>
               </li>
-            </ul>              
+            </ul>
           </nav>
           <!-- /.sidebar-menu -->
         </div>

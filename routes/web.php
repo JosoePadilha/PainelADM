@@ -20,11 +20,12 @@ Route::get('/', [loginController::class, 'index'])->name('/');
 Route::post('/login', [loginController::class, 'login'])->name('login');
 Route::get('/forgetPassword', [loginController::class, 'forgetPassword'])->name('forgetPassword');
 
-Route::middleware(['auth'])->group(function(){    
+Route::middleware(['auth'])->group(function(){
     Route::middleware(['CheckAdm'])->group(function(){
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
         Route::get('/createdCollaborator', [UserController::class, 'create'])->name('createdCollaborator');
+        Route::get('/show', [UserController::class, 'show'])->name('show');
         Route::post('/collaboratorStore', [UserController::class, 'store'])->name('collaboratorStore');
     });
-    Route::get('/logout', [UserController::class, 'logout'])->name('logout');    
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });

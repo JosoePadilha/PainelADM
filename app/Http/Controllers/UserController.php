@@ -46,6 +46,7 @@ class UserController extends Controller
         return view('adm.formStoreCollaborator');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -80,9 +81,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(user $user)
     {
-        //
+        $users = $user::orderBy('name', 'asc')->paginate();
+        return view('adm.showCollaborators', [
+            'users' => $users,
+        ]);
     }
 
     /**
