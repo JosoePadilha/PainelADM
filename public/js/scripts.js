@@ -65,37 +65,37 @@ function moeda(z) {
 }
 
 function validarCNPJ(cnpj, input) {
- 
+
     cnpj = cnpj.replace(/[^\d]+/g,'');
- 
+
     if(cnpj == '') {
         input.setCustomValidity('CNPJ inválido!!');
         cnpj = "";
         return false;
     }
-     
+
     if (cnpj.length != 14){
         input.setCustomValidity('CNPJ inválido!!');
         cnpj = "";
         return false;
     }
- 
+
     // Elimina CNPJs invalidos conhecidos
-    if (cnpj == "00000000000000" || 
-        cnpj == "11111111111111" || 
-        cnpj == "22222222222222" || 
-        cnpj == "33333333333333" || 
-        cnpj == "44444444444444" || 
-        cnpj == "55555555555555" || 
-        cnpj == "66666666666666" || 
-        cnpj == "77777777777777" || 
-        cnpj == "88888888888888" || 
+    if (cnpj == "00000000000000" ||
+        cnpj == "11111111111111" ||
+        cnpj == "22222222222222" ||
+        cnpj == "33333333333333" ||
+        cnpj == "44444444444444" ||
+        cnpj == "55555555555555" ||
+        cnpj == "66666666666666" ||
+        cnpj == "77777777777777" ||
+        cnpj == "88888888888888" ||
         cnpj == "99999999999999"){
             input.setCustomValidity('CNPJ inválido!!');
             cnpj = "";
             return false;
-        }       
-         
+        }
+
     // Valida DVs
     tamanho = cnpj.length - 2
     numeros = cnpj.substring(0,tamanho);
@@ -108,12 +108,12 @@ function validarCNPJ(cnpj, input) {
             pos = 9;
     }
     resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(0)){        
+    if (resultado != digitos.charAt(0)){
         input.setCustomValidity('CNPJ inválido!!');
         cnpj = "";
         return false;
-    }        
-         
+    }
+
     tamanho = tamanho + 1;
     numeros = cnpj.substring(0,tamanho);
     soma = 0;
@@ -131,7 +131,7 @@ function validarCNPJ(cnpj, input) {
     }
 
     input.setCustomValidity('');
-    return true;    
+    return true;
 }
 
 function validarCPF(cpf, input) {
@@ -245,32 +245,3 @@ $('.modalConfirma').on('click', function () {
         $('#modalSee').modal('show'); // modal aparece
     }
 });
-
-/*$(document).ready(function () {
-    $("#observacoesPessoa").bind("input keyup paste", function () {
-        var maximo = 500;
-        var disponivel = maximo - $(this).val().length;
-        if (disponivel < 0) {
-            var texto = $(this).val().substr(0, maximo);
-            $(this).val(texto);
-            disponivel = 0;
-        }
-        $(".contagem").text(disponivel);
-    });
-});
-
-function exibeMensagem() {
-    var val = $("input[name='oficializado']:checked").val();
-    if (val === "Sim") {
-        $("#dataTesteOficialPessoa").attr("required", "true");
-        $("#dataOficial").show('medium');
-        $("#instrutor").attr("required", "true");
-        $("#seInstrutor").show('medium');
-    } else if (val === "Não") {
-        $("#dataTesteOficialPessoa").removeAttr("required");
-        $("#dataOficial").hide('medium');
-        $("#instrutor").removeAttr("required");
-        $("#seInstrutor").hide('medium');
-    }
-}
-*/

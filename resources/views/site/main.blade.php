@@ -8,11 +8,15 @@
     @include('assets.header')
 </head>
 
-    <body class="hold-transition sidebar-mini layout-fixed">        
-        
+    <body class="hold-transition sidebar-mini layout-fixed">
+
         @include('site.navbar')
 
         @include('site.sidebar')
+
+        @include('assets.modalsAlerts')
+
+        @include('assets.alerts')
 
         @yield('content')
 

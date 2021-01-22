@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
@@ -9,13 +10,21 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function dashboard()
-    {        
+    {
         if(Auth::user()->type == "adm" || Auth::user()->type == "collaborator"){
             return view('users.dashboard');
         }else if(Auth::user()->type == "client"){
@@ -24,7 +33,7 @@ class UserController extends Controller
         else{
             return redirect('/');
         }
-        
+
     }
 
     /**
@@ -43,27 +52,26 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateUser $request)
     {
-        $data = $request->only('name', 'email', 'phone', 'password', 'type', 'avatar');       
-        
+        $data = $this->request->only('name', 'email', 'phone', 'password', 'type', 'avatar');
+
         $data['password'] = bcrypt($data['password']);
 
         $user = $this->checkUserExistence($data);
-        
-        if($user == null){            
-            $data['avatar'] = $this->upLoadAvatar($request, $data);
+
+        if($user == null){
+            $data['avatar'] = $this->upLoadAvatar($this->request, $data);
             $data['status'] = 'active';
             User::create($data);
-            // $st = "success";
-            // $message = "Cadastro efetuado com sucesso!!";         
-            return redirect()->back();  
+            $st = "success";
+            $message = "Cadastro efetuado com sucesso!!";
         }
         else{
-            // $st = "error";
-            // $message = "Não foi possível cadastrar, e-mail ou CPF já cadastrados!!";            
+            $st = "error";
+            $message = "Não foi possível cadastrar, e-mail já cadastrados!!";
         }
-        return redirect()->back();
+        return redirect()->back()->with($st, $message);
     }
 
     /**
@@ -121,13 +129,13 @@ class UserController extends Controller
 
     protected function upLoadAvatar($request, $data)
     {
-        if($request->hasFile('avatar') && $request->avatar->isValid()){
-            $imageClient = $request->avatar->store('clients');
-            $data['avatar'] = $imageClient;            
+        if($this->request->hasFile('avatar') && $this->request->avatar->isValid()){
+            $imageClient = $this->request->avatar->store('clients');
+            $data['avatar'] = $imageClient;
         }
         else{
             $data['avatar'] = '';
-        }        
+        }
         return $data['avatar'];
     }
 
@@ -135,9 +143,9 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        $request->session()->invalidate();
+        $this->request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        $this->request->session()->regenerateToken();
 
         return redirect('/');
     }

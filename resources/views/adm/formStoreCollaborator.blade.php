@@ -8,7 +8,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Cadastro de colaborador</h1>
-          </div>          
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -32,10 +32,10 @@
                       <label>*Nome</label>
                       <input type="text" required minlength="10" class="form-control"
                         name="name" id="name" placeholder="Nome do colaborador" value="{{ old('name') }}">
-                    </div>                    
+                    </div>
                     <div class="form-group col-md-3 col-sm-6">
                       <label>Celular</label>
-                      <input type="text" required onkeyup="mascara(this, mtel);" class="form-control"
+                      <input type="text" onkeyup="mascara(this, mtel);" class="form-control"
                         name="phone" minlength="14" maxlength="15" id="phone" placeholder="Celular"
                         oninput="validaTelefone(this.value, this)" value="{{ old('phone') }}">
                     </div>
@@ -43,7 +43,7 @@
                       <label>*E-mail</label>
                       <input type="email" minlength="10" required class="form-control"
                         name="email" id="email" placeholder="E-mail" value="{{ old('email') }}">
-                    </div>                    
+                    </div>
                     <div class="form-group col-md-3 col-sm-6">
                       <label>*Senha</label>
                       <input type="password" minlength="8" required class="form-control" name="password"
@@ -54,7 +54,7 @@
                       <input type="password" minlength="8" required class="form-control" name="passwordRepit"
                         id="passwordRepit" oninput="validaSenha(this)" placeholder="Repita a senha"
                           value="{{ old('passwordRepit') }}">
-                    </div>                    
+                    </div>
                     <div class="form-group col-md-3 col-sm-6">
                       <label>*Tipo de permissão</label>
                       <div class="form-check">
@@ -64,21 +64,21 @@
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" value="adm" type="radio" name="type">
                         <label class="form-check-label">ADM</label>
-                      </div>                      
+                      </div>
                     </div>
                     <div class="form-group col-md-3 col-sm-6">
                       <label class="control-label">Foto</label>
                       <input type="file" class="form-control-file" id="avatar" name="avatar">
                     </div>
                   </div>
-                  </div>                
+                  </div>
                 </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
               </form>
             </div>
-          </div>          
+          </div>
         </div>
       </div>
     </section>

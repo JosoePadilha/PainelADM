@@ -5,7 +5,7 @@
           @if(Auth::user()->avatar)
             <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/'.Auth::user()->avatar) }}">
           @else
-            <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/protelim.png') }}" alt="logo">
+            <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
           @endif          
           <span class="brand-text font-weight-light">Logo</span>
         </a>
