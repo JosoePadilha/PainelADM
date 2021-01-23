@@ -73,9 +73,9 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                            <a class="btn btn-success" href="/show" role="button">Listar</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a class="btn btn-success" href="/show" role="button">Listar</a>
+                    </div>
                 </form>
             </div>
           </div>

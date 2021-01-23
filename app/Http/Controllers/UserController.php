@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
 use App\Models\User;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -85,7 +85,7 @@ class UserController extends Controller
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.showCollaborators', [
-            'users' => DB::table('users')->paginate(1)
+            'users' => DB::table('users')->paginate(8)
         ]);
     }
 
