@@ -81,11 +81,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(user $user)
+    public function show(User $user)
     {
-        $users = $user::orderBy('name', 'asc')->paginate();
+        //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.showCollaborators', [
-            'users' => $users,
+            'users' => DB::table('users')->paginate(1)
         ]);
     }
 

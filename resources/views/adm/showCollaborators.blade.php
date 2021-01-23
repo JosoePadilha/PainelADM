@@ -56,8 +56,6 @@
                             <button type="button" data-type="edit" data-rout="#" class="btn btn-primary modalConfirma"><i class="fa fa-edit"></i></button>
                             <button type="button" data-type="delete" data-rout="#" class="btn btn-danger modalConfirma"><i class="fa fa-trash"></i></button>
                         </center>
-
-
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -66,5 +64,14 @@
         </div>
       </div>
     </section>
+</div>
+<div class="card-footer clearfix">
+    <ul class="pagination pagination-sm m-0 float-right">
+        @if (isset($filters))
+        {{$users->appends($filters)->links()}}
+    @else
+        {{$users->links()}}
+    @endif
+    </ul>
   </div>
 @endsection
