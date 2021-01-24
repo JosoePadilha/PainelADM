@@ -17,9 +17,9 @@ class CheckAdm
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->type == 'adm'){
+        if(Auth::user()->type == 'Adm'){
             return $next($request);
         }
-        return redirect()->back();        
+        return redirect()->back();
     }
 }

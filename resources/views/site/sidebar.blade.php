@@ -66,7 +66,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/show" class="nav-link">
+                    <a href="/showCollaborator" class="nav-link">
                       <i class="fa fa-list-ul" aria-hidden="true"></i>
                       <p>Listar</p>
                     </a>

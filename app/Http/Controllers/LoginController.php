@@ -25,19 +25,19 @@ class LoginController extends Controller
             'email' => $data['email'],
             'password' => $data['password'],
         ];
-        
+
         $remember = empty($data['remember']) ? false : true;
-        
-        if(Auth::attempt($credentials, $remember)){            
+
+        if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();
-            // $st = "success";
-            // $message = "Seja bem vindo ". Auth::user()->name;      
-            return redirect()->intended('dashboard');          
+            $st = "success";
+            $message = "Seja bem vindo ". Auth::user()->name;
+            return redirect()->intended('dashboard')->with($st, $message);
         }
         else{
-            // $st = "error";
-            // $message = "Verifique os dados informados!!";            
-            return redirect('/');
+            $st = "error";
+            $message = "Verifique os dados informados!!";
+            return redirect()->back()->with($st, $message);
         }
     }
 

@@ -13,11 +13,11 @@
                 </div>
                 <p></p>
                 <div class="col-md-6 col-sm-6">
-                    <form class="busca" method="POST" action="#">
+                    <form class="busca" method="POST" action="/searchCollaborator">
                         @csrf
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
-                                placeholder="Nome ou e-mail do cliente">
+                                placeholder="Nome ou e-mail do colaborador">
                                 <button value="{{ old('name') }}" type="submit" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div><!-- /input-group -->
                     </form>
@@ -59,12 +59,12 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <a href="#" class="btn btn-sm bg-primary">
+                                    <button type="button" data-type="edit" data-rout="#" class="btn btn-sm bg-primary modalConfirma">
                                         <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-sm btn-danger">
+                                    </button>
+                                    <button type="button" data-type="delete" data-rout="#" class="btn btn-sm bg-danger modalConfirma">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -25,10 +25,10 @@ class UserController extends Controller
      */
     public function dashboard()
     {
-        if(Auth::user()->type == "adm" || Auth::user()->type == "collaborator"){
+        if(Auth::user()->type == "Adm" || Auth::user()->type == "Usuario"){
             return view('users.dashboard');
-        }else if(Auth::user()->type == "client"){
-            return view('client.dashboard');
+        }else if(Auth::user()->type == "Cliente"){
+            return view('clients.dashboard');
         }
         else{
             return redirect('/');
@@ -63,7 +63,7 @@ class UserController extends Controller
 
         if($user == null){
             $data['avatar'] = $this->upLoadAvatar($this->request, $data);
-            $data['status'] = 'active';
+            $data['status'] = 'Ativo';
             User::create($data);
             $st = "success";
             $message = "Cadastro efetuado com sucesso!!";
@@ -81,7 +81,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function showCollaborator(User $user)
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.showCollaborators', [
@@ -123,6 +123,34 @@ class UserController extends Controller
         //
     }
 
+    public function searchCollaborator(Request $request){
+
+        if(isset($request->filter)){
+            $filters = $request->except('_token');
+            $data = $request['filter'];
+            $users = $this->searchUser($data);
+            if(!$users){
+                $st = "error";
+                $message = "Não há registros!!";
+                return redirect()->route('showCollaborator');
+            }else{
+                $st = "success";
+                $message = "Dados encontrados!!";
+
+                return view('adm.showCollaborators', [
+                    'users' => $users,
+                    'filters' => $filters,
+                    'st' => $st,
+                    'message' => $message,
+                ]);
+            }
+        }
+        else{
+            return redirect()->route('showCollaborator');
+        }
+
+    }
+
     protected function checkUserExistence($data)
     {
         $check = DB::table('users')
@@ -152,5 +180,16 @@ class UserController extends Controller
         $this->request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    protected function searchUser($filter = null){
+        $result = User::orderBy('name', 'asc')->where(function ($query) use($filter) {
+            if($filter){
+               $query->orWhere("name","LIKE", "%$filter%")
+               ->orWhere("email","LIKE", "%$filter%");
+            }
+        })->paginate();
+
+        return $result;
     }
 }

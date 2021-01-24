@@ -58,11 +58,11 @@
                             <div class="form-group col-md-3 col-sm-6">
                             <label>*Tipo de permissão</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" value="user" checked name="type">
+                                <input class="form-check-input" type="radio" value="Usuario" checked name="type">
                                 <label class="form-check-label">Usuário</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" value="adm" type="radio" name="type">
+                                <input class="form-check-input" value="Adm" type="radio" name="type">
                                 <label class="form-check-label">ADM</label>
                             </div>
                             </div>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <a class="btn btn-success" href="/show" role="button">Listar</a>
+                        <a class="btn btn-success" href="/showCollaborator" role="button">Listar</a>
                     </div>
                 </form>
             </div>
