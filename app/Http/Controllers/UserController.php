@@ -82,7 +82,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showCollaborator(User $user)
+    public function showCollaborator()
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.showCollaborators', [
@@ -98,7 +98,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('adm.formEditCollaborator', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -108,9 +111,37 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateUser $request, $id)
     {
-        //
+        if($user = User::find($id)){
+
+            $data = $this->request->all();
+
+            if($data['password'] == null){
+                $data['password'] = $user->password;
+            }
+
+            if(isset($this->request->avatar)){
+                if($user->avatar != null){
+                    Storage::delete($user->avatar);
+                }
+                $data['avatar'] = $this->upLoadAvatar($this->request, $data);
+            }
+            else if(($this->request->avatar == null && $user->avatar != null)){
+                $data['avatar'] = $user->avatar;
+            }
+            else{
+                $data['avatar'] = "";
+            }
+            $user->update($data);
+            $st = "success";
+            $message = "Dados alterados com sucesso!!";
+        }
+        else{
+            $st = "error";
+            $message = "Não foi possível alterar!!";
+        }
+        return redirect()->back()->with($st, $message);
     }
 
     /**
@@ -183,6 +214,15 @@ class UserController extends Controller
             $data['avatar'] = '';
         }
         return $data['avatar'];
+    }
+
+    protected function upDateAvatar($request, $data)
+    {
+        if($this->request->hasFile('avatar') && $this->request->avatar->isValid()){
+            $avatar = $this->request->avatar->store('clients');
+            $data['avatar'] = $avatar;
+        }
+        return $data['image'];
     }
 
     public function logout(Request $request)

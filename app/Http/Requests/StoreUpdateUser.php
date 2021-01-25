@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Route;
 
 class StoreUpdateUser extends FormRequest
 {
@@ -23,6 +24,14 @@ class StoreUpdateUser extends FormRequest
      */
     public function rules()
     {
+        if(Route::currentRouteName() == 'collaboratorEdit'){
+            return [
+                'name'=> 'required|min:10|max:255',
+                'email'=> 'required|email:rfc,filter|min:10|max:255',
+                'phone'=> 'nullable|min:14|max:15',
+                'avatar'=> 'nullable|image',
+            ];
+        }
         return [
             'name'=> 'required|min:10|max:255',
             'email'=> 'required|email:rfc,filter|min:10|max:255',
@@ -35,6 +44,12 @@ class StoreUpdateUser extends FormRequest
 
     public function messages()
     {
+        if(Route::currentRouteName() == 'collaboratorEdit'){
+            return [
+                'name.required' => 'Nome Obrigatório',
+                'email.required' => 'E-mail Obrigatório',
+            ];
+        }
         return [
             'name.required' => 'Nome Obrigatório',
             'email.required' => 'E-mail Obrigatório',

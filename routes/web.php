@@ -26,7 +26,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/createdCollaborator', [UserController::class, 'create'])->name('createdCollaborator');
         Route::get('/showCollaborator', [UserController::class, 'showCollaborator'])->name('showCollaborator');
         Route::get('/destroyCollaborator/{id}', [UserController::class, 'destroy'])->name('destroyCollaborator');
+        Route::get('/editCollaborator/{id}', [UserController::class, 'edit'])->name('editCollaborator');
         Route::post('/collaboratorStore', [UserController::class, 'store'])->name('collaboratorStore');
+        Route::put('/collaboratorEdit/{id}', [UserController::class, 'update'])->name('collaboratorEdit');
         Route::any('/searchCollaborator', [UserController::class, 'searchCollaborator'])->name('searchCollaborator');
     });
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
