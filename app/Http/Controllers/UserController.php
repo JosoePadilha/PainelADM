@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -120,7 +121,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if($user == null){
+            $st = "error";
+            $message = "Não foi possível excluir o usuário!!";
+        }
+        else{
+            if($user->avatar){
+                Storage::delete($user->avatar);
+            }
+            $user->delete();
+            $st = "success";
+            $message = "Usuário excluído com sucesso!!";
+        }
+        return redirect()->back()->with($st, $message);
     }
 
     public function searchCollaborator(Request $request){
