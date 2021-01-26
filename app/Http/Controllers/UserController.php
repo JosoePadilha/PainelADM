@@ -116,10 +116,7 @@ class UserController extends Controller
         if($user = User::find($id)){
 
             $data = $this->request->all();
-
-            if($data['password'] == null){
-                $data['password'] = $user->password;
-            }
+            $data['password'] = $user->password;
 
             if(isset($this->request->avatar)){
                 if($user->avatar != null){

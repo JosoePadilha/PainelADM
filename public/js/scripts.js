@@ -38,6 +38,17 @@ function validaSenha(input) {
     }
 }
 
+function validaSenhaEdit(input) {
+    var passwordRepit = $(input).val();
+    var password = $('input[name=password]').val();
+    if (password != null && passwordRepit == null) {
+        input.setCustomValidity('Repita a senha corretamente');
+        passwordRepit.attr('required', true);
+    } else {
+        input.setCustomValidity('');
+    }
+}
+
 function limitarInput(input) {
     input.value = input.value.substring(0, 2);
 }

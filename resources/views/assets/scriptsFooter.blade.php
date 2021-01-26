@@ -1,22 +1,8 @@
 <!-- jQuery -->
-<script src="{{asset('js/jquery-ui.min.js')}}"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button)
-  </script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/Chart.min.js')}}"></script>
-<script src="{{asset('js/sparkline.js')}}"></script>
-<script src="{{asset('js/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('js/jquery.vmap.usa.js')}}"></script>
-<script src="{{asset('js/jquery.knob.min.js')}}"></script>
-<script src="{{asset('js/moment.min.js')}}"></script>
-<script src="{{asset('js/daterangepicker.js')}}"></script>
-<script src="{{asset('js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<script src="{{asset('js/summernote-bs4.min.js')}}"></script>
-<script src="{{asset('js/jquery.overlayScrollbars.min.js')}}"></script>
-<!-- AdminLTE App -->
+</script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>v
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="{{asset('js/adminlte.min.js')}}"></script>
-<script src="{{asset('js/demo.js')}}"></script>
-<script src="{{asset('js/dashboard.js')}}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>

@@ -46,16 +46,6 @@
                                 name="email" id="email" placeholder="E-mail" value="{{ $user->email }}">
                             </div>
                             <div class="form-group col-md-3 col-sm-6">
-                            <label>Senha</label>
-                            <input type="password" minlength="8" class="form-control" name="password"
-                                id="password" placeholder="Senha">
-                            </div>
-                            <div class="form-group col-md-3 col-sm-6">
-                            <label>Repita a senha</label>
-                            <input type="password" minlength="8" class="form-control" name="passwordRepit"
-                                id="passwordRepit" oninput="validaSenha(this)" placeholder="Repita a senha">
-                            </div>
-                            <div class="form-group col-md-3 col-sm-6">
                                 <label>*Tipo de permissão</label>
                                 @if ($user->type == 'Usuario')
                                     <div class="form-check">
