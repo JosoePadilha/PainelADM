@@ -3,28 +3,28 @@
         <!-- Brand Logo -->
         <a href="" class="brand-link">
             @if(Auth::user()->avatar)
-                <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/'.Auth::user()->avatar) }}">
+                <img alt="Logo" class="logo img-circle elevation-3" src="{{ url('storage/'.Auth::user()->avatar) }}">
             @else
-                <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
+                <img alt="Logo" class="logo img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
             @endif
             <span class="brand-text font-weight-light">Logo</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
-          <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                @if(Auth::user()->avatar)
-                    <img src="{{ url('storage/'.Auth::user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
-                @else
-                    <img src="{{ url('storage/avatarDefault.png') }}" class="img-circle elevation-2" alt="User Image">
-                @endif
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    @if(Auth::user()->avatar)
+                        <img src="{{ url('storage/'.Auth::user()->avatar) }}" class="img-circle elevation-3" alt="User Image">
+                    @else
+                        <img src="{{ url('storage/avatarDefault.png') }}" class="img-circle elevation-3" alt="User Image">
+                    @endif
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                </div>
             </div>
-            <div class="info">
-              <a href="#" class="d-block">{{Auth::user()->name}}</a>
-            </div>
-          </div>
 
           <!-- Sidebar Menu -->
           <nav class="mt-2">

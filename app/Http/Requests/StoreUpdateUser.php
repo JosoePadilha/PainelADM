@@ -29,7 +29,7 @@ class StoreUpdateUser extends FormRequest
                 'name'=> 'required|min:10|max:255',
                 'email'=> 'required|email:rfc,filter|min:10|max:255',
                 'phone'=> 'nullable|min:14|max:15',
-                'avatar'=> 'nullable|image',
+                'avatar'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15048',
             ];
         }
         return [
@@ -38,7 +38,7 @@ class StoreUpdateUser extends FormRequest
             'phone'=> 'nullable|min:14|max:15',
             'password'=> 'required|min:8|max:80',
             'passwordRepit'=> 'required|min:8|max:80|same:password',
-            'avatar'=> 'nullable|image',
+            'avatar'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15048',
         ];
     }
 

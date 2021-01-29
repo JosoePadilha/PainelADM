@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -26,15 +27,13 @@ class UserController extends Controller
      */
     public function dashboard()
     {
-        if(Auth::user()->type == "Adm" || Auth::user()->type == "Usuario"){
+        if (Auth::user()->type == "Adm" || Auth::user()->type == "Usuario") {
             return view('users.dashboard');
-        }else if(Auth::user()->type == "Cliente"){
+        } else if (Auth::user()->type == "Cliente") {
             return view('clients.dashboard');
-        }
-        else{
+        } else {
             return redirect('/');
         }
-
     }
 
     /**
@@ -62,14 +61,13 @@ class UserController extends Controller
 
         $user = $this->checkUserExistence($data);
 
-        if($user == null){
-            $data['avatar'] = $this->upLoadAvatar($this->request, $data);
+        if ($user == null) {
+            $data['avatar'] = $this->resizeAvatar($this->request);
             $data['status'] = 'Ativo';
             User::create($data);
             $st = "success";
             $message = "Cadastro efetuado com sucesso!!";
-        }
-        else{
+        } else {
             $st = "error";
             $message = "Não foi possível cadastrar, e-mail já cadastrados!!";
         }
@@ -113,28 +111,34 @@ class UserController extends Controller
      */
     public function update(StoreUpdateUser $request, $id)
     {
-        if($user = User::find($id)){
+        if ($user = User::find($id)) {
 
-            $data = $this->request->all();
+            $data = $this->request->only('name', 'email', 'phone','type', 'avatar');
             $data['password'] = $user->password;
 
-            if(isset($this->request->avatar)){
-                if($user->avatar != null){
-                    Storage::delete($user->avatar);
+            $checkUser = $this->checkUserExistence($data);
+
+            if ($checkUser == null) {
+                if (isset($this->request->avatar)) {
+                    if ($user->avatar != null) {
+                        Storage::delete($user->avatar);
+                    }
+                    $data['avatar'] = $this->resizeAvatar($this->request);
+                } else if (($this->request->avatar == null && $user->avatar != null)) {
+                    $data['avatar'] = $user->avatar;
+                } else {
+                    $data['avatar'] = "";
                 }
-                $data['avatar'] = $this->upLoadAvatar($this->request, $data);
-            }
-            else if(($this->request->avatar == null && $user->avatar != null)){
-                $data['avatar'] = $user->avatar;
+
+                $user->update($data);
+                $st = "success";
+                $message = "Dados alterados com sucesso!!";
             }
             else{
-                $data['avatar'] = "";
+                $st = "error";
+                $message = "E-mail já cadastrado!!";
             }
-            $user->update($data);
-            $st = "success";
-            $message = "Dados alterados com sucesso!!";
-        }
-        else{
+        } else {
             $st = "error";
             $message = "Não foi possível alterar!!";
         }
@@ -150,12 +154,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if($user == null){
+        if ($user == null) {
             $st = "error";
             $message = "Não foi possível excluir o usuário!!";
-        }
-        else{
-            if($user->avatar){
+        } else {
+            if ($user->avatar) {
                 Storage::delete($user->avatar);
             }
             $user->delete();
@@ -165,17 +168,18 @@ class UserController extends Controller
         return redirect()->back()->with($st, $message);
     }
 
-    public function searchCollaborator(Request $request){
+    public function searchCollaborator(Request $request)
+    {
 
-        if(isset($request->filter)){
+        if (isset($request->filter)) {
             $filters = $request->except('_token');
             $data = $request['filter'];
             $users = $this->searchUser($data);
-            if(!$users){
+            if (!$users) {
                 $st = "error";
                 $message = "Não há registros!!";
                 return redirect()->route('showCollaborator');
-            }else{
+            } else {
                 $st = "success";
                 $message = "Dados encontrados!!";
 
@@ -186,11 +190,9 @@ class UserController extends Controller
                     'message' => $message,
                 ]);
             }
-        }
-        else{
+        } else {
             return redirect()->route('showCollaborator');
         }
-
     }
 
     protected function checkUserExistence($data)
@@ -201,25 +203,24 @@ class UserController extends Controller
         return $check;
     }
 
-    protected function upLoadAvatar($request, $data)
+    public function resizeAvatar(Request $request)
     {
-        if($this->request->hasFile('avatar') && $this->request->avatar->isValid()){
-            $imageClient = $this->request->avatar->store('clients');
-            $data['avatar'] = $imageClient;
-        }
-        else{
-            $data['avatar'] = '';
-        }
-        return $data['avatar'];
-    }
+        if ($this->request->hasFile('avatar') && $this->request->avatar->isValid()) {
+            $nameAvatar = md5(uniqid()) . '-' . time() . '.jpg';
+            $destinationPath = storage_path('app/public/clients');
+            $img = Image::make($this->request->avatar->getRealPath());
 
-    protected function upDateAvatar($request, $data)
-    {
-        if($this->request->hasFile('avatar') && $this->request->avatar->isValid()){
-            $avatar = $this->request->avatar->store('clients');
-            $data['avatar'] = $avatar;
+            $img->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath . '/' . $nameAvatar);
+
+            $destinationPath = storage_path('app/public/clients');
+
+            $dirAvatar = 'clients/' . $nameAvatar;
+        } else {
+            $dirAvatar = '';
         }
-        return $data['image'];
+        return $dirAvatar;
     }
 
     public function logout(Request $request)
@@ -233,11 +234,12 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    protected function searchUser($filter = null){
-        $result = User::orderBy('name', 'asc')->where(function ($query) use($filter) {
-            if($filter){
-               $query->orWhere("name","LIKE", "%$filter%")
-               ->orWhere("email","LIKE", "%$filter%");
+    protected function searchUser($filter = null)
+    {
+        $result = User::orderBy('name', 'asc')->where(function ($query) use ($filter) {
+            if ($filter) {
+                $query->orWhere("name", "LIKE", "%$filter%")
+                    ->orWhere("email", "LIKE", "%$filter%");
             }
         })->paginate();
 
