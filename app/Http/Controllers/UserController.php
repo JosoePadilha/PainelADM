@@ -113,31 +113,23 @@ class UserController extends Controller
     {
         if ($user = User::find($id)) {
 
-            $data = $this->request->only('name', 'email', 'phone','type', 'avatar');
+            $data = $this->request->only('name', 'email', 'phone', 'type', 'avatar');
             $data['password'] = $user->password;
 
-            $checkUser = $this->checkUserExistence($data);
-
-            if ($checkUser == null) {
-                if (isset($this->request->avatar)) {
-                    if ($user->avatar != null) {
-                        Storage::delete($user->avatar);
-                    }
-                    $data['avatar'] = $this->resizeAvatar($this->request);
-                } else if (($this->request->avatar == null && $user->avatar != null)) {
-                    $data['avatar'] = $user->avatar;
-                } else {
-                    $data['avatar'] = "";
+            if (isset($this->request->avatar)) {
+                if ($user->avatar != null) {
+                    Storage::delete($user->avatar);
                 }
+                $data['avatar'] = $this->resizeAvatar($this->request);
+            } else if (($this->request->avatar == null && $user->avatar != null)) {
+                $data['avatar'] = $user->avatar;
+            } else {
+                $data['avatar'] = "";
+            }
 
-                $user->update($data);
-                $st = "success";
-                $message = "Dados alterados com sucesso!!";
-            }
-            else{
-                $st = "error";
-                $message = "E-mail já cadastrado!!";
-            }
+            $user->update($data);
+            $st = "success";
+            $message = "Dados alterados com sucesso!!";
         } else {
             $st = "error";
             $message = "Não foi possível alterar!!";
