@@ -44,6 +44,8 @@
                                             <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user"></i></span> Status: {{$user->status}}</li>
                                             <p></p>
                                             <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone: {{$user->phone}}</li>
+                                            <p></p>
+                                            <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></i></span> E-mail: {{$user->email}}</li>
                                         </ul>
                                     </div>
                                     <div class="col-5 text-center">
@@ -62,9 +64,12 @@
                                     <button type="button" data-type="edit" data-rout="{{ route ('editCollaborator', $user->id) }}" class="btn btn-sm bg-primary modalConfirma">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button type="button" data-type="delete" data-rout="{{ route ('destroyCollaborator', $user->id) }}" class="btn btn-sm bg-danger modalConfirma">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    @if (Auth::user()->id != $user->id)
+                                        <button type="button" data-type="delete" data-rout="{{ route ('destroyCollaborator', $user->id) }}" class="btn btn-sm bg-danger modalConfirma">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>

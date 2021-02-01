@@ -47,7 +47,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/createdClient" class="nav-link">
                       <i class="far fa-plus-square"></i>
                       <p>Cadastrar</p>
                     </a>

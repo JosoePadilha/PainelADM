@@ -3,6 +3,10 @@ function id(el) {
     return document.getElementById(el);
 }
 
+$("input[data-bootstrap-switch]").each(function(){
+    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+  })
+
 function validarData(data, input) {
     var dataAtual = new Date();
     var dia = data.substring(0, 2);

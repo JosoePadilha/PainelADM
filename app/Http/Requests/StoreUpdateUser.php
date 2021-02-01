@@ -30,16 +30,16 @@ class StoreUpdateUser extends FormRequest
             return [
                 'name' => 'required|min:10|max:255',
                 'email' => "required|unique:users,email,{$id},id|email:rfc,filter|min:10|max:255",
-                'phone' => "nullable|min:14|max:15|unique:users,phone,{$id},id",
+                'phone' => "nullable|min:14|max:15|celular_com_ddd|unique:users,phone,{$id},id",
                 'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15048',
             ];
         } else {
             return [
                 'name' => 'required|min:10|max:255',
-                'email' => 'required|email:rfc,filter|min:10|max:255',
-                'phone' => 'nullable|min:14|max:15',
-                'password' => 'required|min:8|max:80',
-                'passwordRepit' => 'required|min:8|max:80|same:password',
+                'email' => "required|unique:users,email,{$id},id|email:rfc,filter|min:10|max:255",
+                'phone' => "nullable|min:14|max:15|celular_com_ddd|unique:users,phone,{$id},id",
+                'password' => 'required|min:8|max:80|confirmed',
+                'password_confirmation' => 'required|min:8|max:80|same:password',
                 'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15048',
             ];
         }
@@ -65,6 +65,7 @@ class StoreUpdateUser extends FormRequest
     public function attributes()
     {
         return [
+            'name' => 'Nome',
             'email' => 'E-mail',
             'phone' => 'Telefone',
             'password' => 'Senha',

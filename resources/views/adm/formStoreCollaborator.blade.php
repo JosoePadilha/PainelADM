@@ -51,8 +51,8 @@
                             </div>
                             <div class="form-group col-md-3 col-sm-6">
                             <label>*Repita a senha</label>
-                            <input type="password" minlength="8" required class="form-control" name="passwordRepit"
-                                id="passwordRepit" oninput="validaSenha(this)" placeholder="Repita a senha"
+                            <input type="password" minlength="8" required class="form-control" name="password_confirmation"
+                                id="password_confirmation" oninput="validaSenha(this)" placeholder="Repita a senha"
                                 value="{{ old('passwordRepit') }}">
                             </div>
                             <div class="form-group col-md-3 col-sm-6">

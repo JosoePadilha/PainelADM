@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.showCollaborators', [
-            'users' => DB::table('users')->paginate(8)
+            'users' => DB::table('users')->paginate(9)
         ]);
     }
 
@@ -113,7 +113,7 @@ class UserController extends Controller
     {
         if ($user = User::find($id)) {
 
-            $data = $this->request->only('name', 'email', 'phone', 'type', 'avatar');
+            $data = $this->request->only('name', 'email', 'phone', 'type', 'avatar','status');
             $data['password'] = $user->password;
 
             if (isset($this->request->avatar)) {
@@ -155,7 +155,7 @@ class UserController extends Controller
             }
             $user->delete();
             $st = "success";
-            $message = "Usuário excluído com sucesso!!";
+            $message = "Colaborador excluído com sucesso!!";
         }
         return redirect()->back()->with($st, $message);
     }
@@ -199,31 +199,20 @@ class UserController extends Controller
     {
         if ($this->request->hasFile('avatar') && $this->request->avatar->isValid()) {
             $nameAvatar = md5(uniqid()) . '-' . time() . '.jpg';
-            $destinationPath = storage_path('app/public/clients');
+            $destinationPath = storage_path('app/public/users');
             $img = Image::make($this->request->avatar->getRealPath());
 
             $img->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destinationPath . '/' . $nameAvatar);
 
-            $destinationPath = storage_path('app/public/clients');
+            $destinationPath = storage_path('app/public/users');
 
-            $dirAvatar = 'clients/' . $nameAvatar;
+            $dirAvatar = 'users/' . $nameAvatar;
         } else {
             $dirAvatar = '';
         }
         return $dirAvatar;
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $this->request->session()->invalidate();
-
-        $this->request->session()->regenerateToken();
-
-        return redirect('/');
     }
 
     protected function searchUser($filter = null)

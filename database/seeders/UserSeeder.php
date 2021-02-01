@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     public function run()
     {
 
-        foreach(range(1,20) as $index){
+        foreach(range(1,10) as $index){
             DB::table('users')->insert([
                 'name' => Str::random(10),
                 'phone' => Str::random(10),

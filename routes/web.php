@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CLientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/collaboratorStore', [UserController::class, 'store'])->name('collaboratorStore');
         Route::put('/collaboratorEdit/{id}', [UserController::class, 'update'])->name('collaboratorEdit');
         Route::any('/searchCollaborator', [UserController::class, 'searchCollaborator'])->name('searchCollaborator');
+        Route::get('/createdClient', [CLientController::class, 'create'])->name('createdClient');
+        Route::post('/clientStore', [CLientController::class, 'store'])->name('clientStore');
     });
-    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
