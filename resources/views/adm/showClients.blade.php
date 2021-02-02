@@ -1,5 +1,5 @@
 @extends('site.main')
-@section('title', 'Colaboradores')
+@section('title', 'Clientes')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-3 col-sm-6">
-                    <h1>Colaboradores</h1>
+                    <h1>Clientes</h1>
                 </div>
                 <div class="col-md-3 col-sm-6">
                 </div>
@@ -32,25 +32,25 @@
         <div class="card card-solid">
             <div class="card-body pb-0">
                 <div class="row d-flex align-items-stretch">
-                    @foreach ($users as $user)
+                    @foreach ($clients as $client)
                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                         <div class="card bg-light">
                             <div class="card-body pt-0">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="lead"><b>{{$user->name}}</b></h2>
-                                        <p class="text-muted text-sm"><b>Acesso: </b>{{$user->type}}</p>
+                                        <h2 class="lead"><b>{{$client->name}}</b></h2>
+                                        <p class="text-muted text-sm"><b>Acesso: </b>{{$client->type}}</p>
                                         <ul class="ml-4 mb-0 fa-ul text-muted">
-                                            <li class="small"><span class="fa-li"><i class="fa fa-check-square"></i></span> Status: {{$user->status}}</li>
-                                            <p></p>
-                                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone: {{$user->phone}}</li>
-                                            <p></p>
-                                            <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></i></span> E-mail: {{$user->email}}</li>
+                                            <li class="small"><span class="fa-li"><i class="fa fa-check-square"></i></span> Status: {{$client->status}}</li>
+                                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone: {{$client->phone}}</li>
+                                            <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></i></span> E-mail: {{$client->email}}</li>
+                                            <li class="small"><span class="fa-li"><i class="fa fa-road"></i></span> {{$client->neighborhood}}, {{$client->city}}, {{$client->number}}</li>
+                                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> {{$client->cnpj}}</li>
                                         </ul>
                                     </div>
                                     <div class="col-5 text-center">
-                                        @if($user->avatar)
-                                            <img src="{{ url('storage/'.$user->avatar) }}"
+                                        @if($client->avatar)
+                                            <img src="{{ url('storage/'.$client->avatar) }}"
                                             alt="user-avatar" class="img-circle img-fluid">
                                         @else
                                             <img src="{{ url('storage/avatarDefault.png') }}"
@@ -61,15 +61,12 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <button type="button" data-type="edit" data-rout="{{ route ('editCollaborator', $user->id) }}" class="btn btn-sm bg-primary modalConfirma">
+                                    <button type="button" data-type="edit" data-rout="#" class="btn btn-sm bg-primary modalConfirma">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    @if (Auth::user()->id != $user->id)
-                                        <button type="button" data-type="delete" data-rout="{{ route ('destroyCollaborator', $user->id) }}" class="btn btn-sm bg-danger modalConfirma">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    @endif
-
+                                    <button type="button" data-type="delete" data-rout="#" class="btn btn-sm bg-danger modalConfirma">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +82,9 @@
                     </ul>
                     <ul class="pagination esqueciSenha">
                         @if (isset($filters))
-                            {{$users->appends($filters)->links()}}
+                            {{$clients->appends($filters)->links()}}
                         @else
-                            {{$users->links()}}
+                            {{$clients->links()}}
                         @endif
                     </ul>
                </div>

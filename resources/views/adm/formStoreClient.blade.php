@@ -30,7 +30,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-4 col-sm-6">
                                 <label>*Nome empresa</label>
-                                <input type="text" required minlength="10" class="form-control"
+                                <input type="text" required minlength="5" class="form-control"
                                 name="name" id="name" placeholder="Nome da empresa" value="{{ old('name') }}">
                             </div>
                             <div class="form-group col-md-4 col-sm-6">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group col-md-3 col-sm-6">
                                 <label>Celular</label>
-                                <input type="text" required onkeyup="mascara(this, mtel);" class="form-control"
+                                <input type="text" onkeyup="mascara(this, mtel);" class="form-control"
                                 name="celPhone" minlength="14" maxlength="15" id="celPhone" placeholder="Celular"
                                 oninput="validaTelefone(this.value, this)" value="{{ old('celPhone') }}">
                             </div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group col-md-3 col-sm-6">
                                 <label>*Bairro</label>
-                                <input type="text" minlength="5" class="form-control"name="neighborhood"
+                                <input type="text" required minlength="5" class="form-control"name="neighborhood"
                                 id="neighborhood" placeholder="Bairro" value="{{ old('neighborhood') }}">
                             </div>
                             <div class="form-group col-md-3 col-sm-6">

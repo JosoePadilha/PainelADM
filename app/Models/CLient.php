@@ -14,6 +14,7 @@ class CLient extends Model
     protected $fillable = [
         'name',
         'status',
+        'type',
         'avatar',
         'socialReason',
         'cnpj',

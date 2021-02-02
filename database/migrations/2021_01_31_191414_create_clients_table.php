@@ -17,6 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status');
+            $table->string('type');
             $table->string('avatar');
             $table->string('socialReason')->unique();
             $table->string('cnpj')->unique();

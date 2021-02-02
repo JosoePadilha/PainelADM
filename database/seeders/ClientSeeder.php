@@ -20,6 +20,7 @@ class ClientSeeder extends Seeder
             DB::table('clients')->insert([
                 'name' => Str::random(10),
                 'status' => 'Ativo',
+                'type' => 'Cliente',
                 'avatar' => '',
                 'socialReason' => Str::random(10),
                 'cnpj' => Str::random(10),

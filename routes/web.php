@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function(){
         Route::any('/searchCollaborator', [UserController::class, 'searchCollaborator'])->name('searchCollaborator');
         Route::get('/createdClient', [CLientController::class, 'create'])->name('createdClient');
         Route::post('/clientStore', [CLientController::class, 'store'])->name('clientStore');
+        Route::get('/showClients', [ClientController::class, 'showClients'])->name('showClients');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

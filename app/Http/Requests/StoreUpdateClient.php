@@ -28,11 +28,11 @@ class StoreUpdateClient extends FormRequest
 
         if (Route::currentRouteName() == 'clientEdit') {
             return [
-                'name' => 'required|min:10|max:255',
+                'name' => 'required|min:5|max:255',
                 'socialReason' => "required|min:10|max:255|unique:clients,socialReason,{$id},id",
                 'cnpj' => "required|min:18|max:18|cnpj|formato_cnpj|unique:clients,cnpj,{$id},id",
-                'phone' => "nullable|min:14|max:15|celular_com_ddd|unique:clients,phone,{$id},id",
-                'celPhone' => "nullable|min:14|max:15|telefone_com_ddd|unique:clients,phone,{$id},id",
+                'phone' => "required|min:14|max:15|telefone_com_ddd|unique:clients,phone,{$id},id",
+                'celPhone' => "nullable|min:14|max:15|celular_com_ddd|unique:clients,phone,{$id},id",
                 'email' => "required|unique:clients,email,{$id},id|email:rfc,filter|min:10|max:255",
                 'city' => 'required|min:10|max:255',
                 'neighborhood' => 'required|min:5|max:50',
@@ -41,10 +41,10 @@ class StoreUpdateClient extends FormRequest
             ];
         } else {
             return [
-                'name' => 'required|min:10|max:255',
+                'name' => 'required|min:5|max:255',
                 'socialReason' => "required|min:10|max:255|unique:clients,socialReason,{$id},id",
                 'cnpj' => "required|min:18|max:18|cnpj|formato_cnpj|unique:clients,cnpj,{$id},id",
-                'phone' => "nullable|min:14|max:15|telefone_com_ddd|unique:clients,phone,{$id},id",
+                'phone' => "required|min:14|max:15|telefone_com_ddd|unique:clients,phone,{$id},id",
                 'celPhone' => "nullable|min:14|max:15|celular_com_ddd|unique:clients,phone,{$id},id",
                 'email' => "required|unique:clients,email,{$id},id|email:rfc,filter|min:10|max:255",
                 'city' => 'required|min:5|max:255',
@@ -68,6 +68,8 @@ class StoreUpdateClient extends FormRequest
                 'email.required' => 'E-mail Obrigatório',
                 'city.required' => 'Cidade Obrigatório',
                 'neighborhood.required' => 'Bairro Obrigatório',
+                'password.required' => 'Senha obrigatória',
+                'password_confirmation.required' => 'Senha repetida obrigatória',
             ];
         } else {
             return [
@@ -79,7 +81,7 @@ class StoreUpdateClient extends FormRequest
                 'city.required' => 'Cidade Obrigatório',
                 'neighborhood.required' => 'Bairro Obrigatório',
                 'password.required' => 'Senha com no mímio 8 caracteres',
-                'passwordRepit.required' => 'Senhas não são iguais',
+                'password_confirmation.required' => 'Senhas não são iguais',
             ];
         }
     }

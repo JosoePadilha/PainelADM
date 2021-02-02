@@ -53,7 +53,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/showClients" class="nav-link">
                       <i class="fa fa-list-ul" aria-hidden="true"></i>
                       <p>Listar</p>
                     </a>

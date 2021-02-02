@@ -50,11 +50,11 @@ class ClientController extends Controller
         ('name', 'status', 'avatar', 'socialReason', 'cnpj', 'phone', 'celPhone', 'email', 'city',
         'neighborhood', 'state', 'number', 'password');
 
-        $data['password'] = bcrypt($data['password']);
-
         $client = $this->checkClientExistence($data);
 
         if ($client == null) {
+            $data['password'] = bcrypt($data['password']);
+            $data['type'] = 'Cliente';
             $data['avatar'] = $this->resizeAvatar($this->request);
             $data['status'] = 'Ativo';
             CLient::create($data);
@@ -73,9 +73,12 @@ class ClientController extends Controller
      * @param  \App\Models\CLient  $cLient
      * @return \Illuminate\Http\Response
      */
-    public function show(CLient $cLient)
+    public function showClients()
     {
-        //
+        //$users = $user::orderBy('name', 'asc')->paginate(4);
+        return view('adm.showClients', [
+            'clients' => DB::table('clients')->paginate(9)
+        ]);
     }
 
     /**
