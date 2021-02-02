@@ -61,7 +61,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <button type="button" data-type="edit" data-rout="#" class="btn btn-sm bg-primary modalConfirma">
+                                    <button type="button" data-type="edit" data-rout="{{ route ('editClient', $client->id) }}" class="btn btn-sm bg-primary modalConfirma">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <button type="button" data-type="delete" data-rout="#" class="btn btn-sm bg-danger modalConfirma">

@@ -34,7 +34,7 @@ class StoreUpdateClient extends FormRequest
                 'phone' => "required|min:14|max:15|telefone_com_ddd|unique:clients,phone,{$id},id",
                 'celPhone' => "nullable|min:14|max:15|celular_com_ddd|unique:clients,phone,{$id},id",
                 'email' => "required|unique:clients,email,{$id},id|email:rfc,filter|min:10|max:255",
-                'city' => 'required|min:10|max:255',
+                'city' => 'required|min:5|max:255',
                 'neighborhood' => 'required|min:5|max:50',
                 'number' => 'nullable',
                 'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15048',

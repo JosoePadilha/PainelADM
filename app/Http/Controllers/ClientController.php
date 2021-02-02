@@ -87,9 +87,12 @@ class ClientController extends Controller
      * @param  \App\Models\CLient  $cLient
      * @return \Illuminate\Http\Response
      */
-    public function edit(CLient $cLient)
+    public function edit($id)
     {
-        //
+        $client = Client::find($id);
+        return view('adm.formEditClient', [
+            'client' => $client,
+        ]);
     }
 
     /**
@@ -99,9 +102,35 @@ class ClientController extends Controller
      * @param  \App\Models\CLient  $cLient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CLient $cLient)
+    public function update(StoreUpdateClient $request, $id)
     {
-        //
+        if ($client = Client::find($id)) {
+
+            $data = $this->request->only
+            ('name', 'type', 'status', 'avatar', 'socialReason', 'cnpj', 'phone', 'celPhone', 'email', 'city',
+            'neighborhood', 'state', 'number', 'password');
+
+            $data['password'] = $client->password;
+
+            if (isset($this->request->avatar)) {
+                if ($client->avatar != null) {
+                    Storage::delete($client->avatar);
+                }
+                $data['avatar'] = $this->resizeAvatar($this->request);
+            } else if (($this->request->avatar == null && $client->avatar != null)) {
+                $data['avatar'] = $client->avatar;
+            } else {
+                $data['avatar'] = "";
+            }
+
+            $client->update($data);
+            $st = "success";
+            $message = "Dados alterados com sucesso!!";
+        } else {
+            $st = "error";
+            $message = "Não foi possível alterar!!";
+        }
+        return redirect()->back()->with($st, $message);
     }
 
     /**

@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/clientStore', [CLientController::class, 'store'])->name('clientStore');
         Route::get('/showClients', [ClientController::class, 'showClients'])->name('showClients');
         Route::any('/searchClient', [ClientController::class, 'searchClient'])->name('searchClient');
+        Route::get('/editClient/{id}', [ClientController::class, 'edit'])->name('editClient');
+        Route::put('/clientEdit/{id}', [ClientController::class, 'update'])->name('clientEdit');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
