@@ -115,6 +115,32 @@ class ClientController extends Controller
         //
     }
 
+    public function searchClient(Request $request)
+    {
+        if (isset($request->filter)) {
+            $filters = $request->except('_token');
+            $data = $request['filter'];
+            $clients = $this->searchClients($data);
+            if (!$clients) {
+                $st = "error";
+                $message = "Não há registros!!";
+                return redirect()->route('showClients');
+            } else {
+                $st = "success";
+                $message = "Dados encontrados!!";
+
+                return view('adm.showClients', [
+                    'clients' => $clients,
+                    'filters' => $filters,
+                    'st' => $st,
+                    'message' => $message,
+                ]);
+            }
+        } else {
+            return redirect()->route('showClients');
+        }
+    }
+
     public function resizeAvatar(Request $request)
     {
         if ($this->request->hasFile('avatar') && $this->request->avatar->isValid()) {
@@ -133,6 +159,18 @@ class ClientController extends Controller
             $dirAvatar = '';
         }
         return $dirAvatar;
+    }
+
+    protected function searchClients($filter = null)
+    {
+        $result = Client::orderBy('name', 'asc')->where(function ($query) use ($filter) {
+            if ($filter) {
+                $query->orWhere("name", "LIKE", "%$filter%")
+                    ->orWhere("email", "LIKE", "%$filter%");
+            }
+        })->paginate();
+
+        return $result;
     }
 
     protected function checkClientExistence($data)

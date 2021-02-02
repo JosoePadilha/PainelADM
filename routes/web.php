@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/createdClient', [CLientController::class, 'create'])->name('createdClient');
         Route::post('/clientStore', [CLientController::class, 'store'])->name('clientStore');
         Route::get('/showClients', [ClientController::class, 'showClients'])->name('showClients');
+        Route::any('/searchClient', [ClientController::class, 'searchClient'])->name('searchClient');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

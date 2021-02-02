@@ -1,5 +1,5 @@
 @extends('site.main')
-@section('title', 'Clientes')
+@section('title', 'PainelADM - Clientes')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -13,11 +13,11 @@
                 </div>
                 <p></p>
                 <div class="col-md-6 col-sm-6">
-                    <form class="busca" method="POST" action="/searchCollaborator">
+                    <form class="busca" method="POST" action="/searchClient">
                         @csrf
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
-                                placeholder="Nome ou e-mail do colaborador">
+                                placeholder="Nome ou e-mail do cliente">
                                 <button value="{{ old('name') }}" type="submit" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div><!-- /input-group -->
                     </form>
@@ -78,7 +78,7 @@
             <div class="card-footer">
                <div class="row">
                     <ul class="pagination justify-content-center m-0">
-                        <a class="btn btn-success" href="/createdCollaborator" role="button">Cadastrar</a>
+                        <a class="btn btn-success" href="/createdClient" role="button">Cadastrar</a>
                     </ul>
                     <ul class="pagination esqueciSenha">
                         @if (isset($filters))

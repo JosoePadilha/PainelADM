@@ -1,5 +1,5 @@
 @extends('site.main')
-@section('title', 'Colaboradores')
+@section('title', 'PainelADM - Colaboradores')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

@@ -1,5 +1,5 @@
 @extends('site.main')
-@section('title', 'Dashboard')
+@section('title', 'PainelADM - Cadastro cliente')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -91,7 +91,7 @@
                                 <label>*Repita a senha</label>
                                 <input type="password" minlength="8" required class="form-control" name="password_confirmation"
                                 id="password_confirmation" oninput="validaSenha(this)" placeholder="Repita a senha"
-                                value="{{ old('passwordRepit') }}">
+                                value="{{ old('password_confirmation') }}">
                             </div>
                             <div class="form-group col-md-3 col-sm-6">
                                 <label class="control-label">Imagem</label>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <a class="btn btn-success" href="#" role="button">Listar</a>
+                        <a class="btn btn-success" href="/showClients" role="button">Listar</a>
                     </div>
                 </form>
             </div>
