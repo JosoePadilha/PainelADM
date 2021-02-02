@@ -64,7 +64,7 @@
                                     <button type="button" data-type="edit" data-rout="{{ route ('editClient', $client->id) }}" class="btn btn-sm bg-primary modalConfirma">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button type="button" data-type="delete" data-rout="#" class="btn btn-sm bg-danger modalConfirma">
+                                    <button type="button" data-type="delete" data-rout="{{ route ('destroyClient', $client->id) }}" class="btn btn-sm bg-danger modalConfirma">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>

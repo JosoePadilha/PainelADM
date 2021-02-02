@@ -139,9 +139,21 @@ class ClientController extends Controller
      * @param  \App\Models\CLient  $cLient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CLient $cLient)
+    public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+        if ($client == null) {
+            $st = "error";
+            $message = "Não foi possível excluir o cliente!!";
+        } else {
+            if ($client->avatar) {
+                Storage::delete($client->avatar);
+            }
+            $client->delete();
+            $st = "success";
+            $message = "Cliente excluído com sucesso!!";
+        }
+        return redirect()->back()->with($st, $message);
     }
 
     public function searchClient(Request $request)

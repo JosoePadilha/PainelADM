@@ -84,6 +84,28 @@
                                 placeholder="Número" value="{{ $client->number }}">
                             </div>
                             <div class="form-group col-md-3 col-sm-6">
+                                <label>Status</label>
+                                @if ($client->status == 'Ativo')
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input custom-control-input-primary" value="Ativo" type="radio" id="status1" name="status" checked>
+                                        <label for="status1" class="custom-control-label">Ativo</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input custom-control-input-danger" value="Inativo" type="radio" id="status2" name="status">
+                                        <label for="status2" class="custom-control-label">Inativo</label>
+                                    </div>
+                                @else
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input custom-control-input-primary" value="Ativo" type="radio" id="status1" name="status">
+                                        <label for="status1" class="custom-control-label">Ativo</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input custom-control-input-danger" value="Inativo" type="radio" id="status2" name="status" checked>
+                                        <label for="status2" class="custom-control-label">Inativo</label>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group col-md-3 col-sm-6">
                                 <label class="control-label">Imagem</label>
                                 <input type="file" class="form-control-file" id="avatar" name="avatar">
                             </div>

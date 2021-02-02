@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
         Route::any('/searchClient', [ClientController::class, 'searchClient'])->name('searchClient');
         Route::get('/editClient/{id}', [ClientController::class, 'edit'])->name('editClient');
         Route::put('/clientEdit/{id}', [ClientController::class, 'update'])->name('clientEdit');
+        Route::get('/destroyClient/{id}', [ClientController::class, 'destroy'])->name('destroyClient');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
