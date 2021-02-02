@@ -102,6 +102,14 @@ class UserController extends Controller
         ]);
     }
 
+    public function seeCollaborator($id)
+    {
+        $user = User::find($id);
+        return view('adm.seeCollaborator', [
+            'user' => $user,
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *

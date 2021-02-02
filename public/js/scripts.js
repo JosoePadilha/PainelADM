@@ -256,7 +256,7 @@ $('.modalConfirma').on('click', function () {
         $('#modalExcluir').modal('show'); // modal aparece
     }
     else if (type === "see") {
-        $('a.delete-yes').attr('href', rout); // mudar dinamicamente o link, href do botão confirmar da modal
+        $('a.see-yes').attr('href', rout); // mudar dinamicamente o link, href do botão confirmar da modal
         $('#modalSee').modal('show'); // modal aparece
     }
 });

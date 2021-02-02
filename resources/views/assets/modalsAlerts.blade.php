@@ -36,8 +36,8 @@
                     <h5 class="modal-title"><strong>Deseja visualizar o registro?</strong></h5>
                 </div>
             <div class="modal-footer">
-                <a href="#" type="button" class="btn btn-info fa fa-lg fa-thumbs-o-up delete-yes"></a>
-                <button type="button" data-dismiss="modal" class="btn btn-danger fa fa-lg fa-thumbs-o-down"></button>
+                <a href="#" type="button" class="btn btn-info see-yes"><i class="fa fa-lg fa-thumbs-up"></i></a>
+                <a href="#" type="button" data-dismiss="modal" class="btn btn-danger"><i class="fa fa-lg fa-thumbs-down"></i></a>
             </div>
         </div>
     </div>

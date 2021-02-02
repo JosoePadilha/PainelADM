@@ -95,6 +95,14 @@ class ClientController extends Controller
         ]);
     }
 
+    public function seeClient($id)
+    {
+        $client = Client::find($id);
+        return view('adm.seeClient', [
+            'client' => $client,
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *

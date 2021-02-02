@@ -61,6 +61,9 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
+                                    <button type="button" data-type="see" data-rout="{{ route ('seeClient', $client->id) }}" class="btn btn-sm bg-secondary modalConfirma">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
                                     <button type="button" data-type="edit" data-rout="{{ route ('editClient', $client->id) }}" class="btn btn-sm bg-primary modalConfirma">
                                         <i class="fas fa-edit"></i>
                                     </button>

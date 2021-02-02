@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/editCollaborator/{id}', [UserController::class, 'edit'])->name('editCollaborator');
         Route::post('/collaboratorStore', [UserController::class, 'store'])->name('collaboratorStore');
         Route::put('/collaboratorEdit/{id}', [UserController::class, 'update'])->name('collaboratorEdit');
+        Route::get('/seeCollaborator/{id}', [UserController::class, 'seeCollaborator'])->name('seeCollaborator');
         Route::any('/searchCollaborator', [UserController::class, 'searchCollaborator'])->name('searchCollaborator');
         Route::get('/createdClient', [CLientController::class, 'create'])->name('createdClient');
         Route::post('/clientStore', [CLientController::class, 'store'])->name('clientStore');
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/editClient/{id}', [ClientController::class, 'edit'])->name('editClient');
         Route::put('/clientEdit/{id}', [ClientController::class, 'update'])->name('clientEdit');
         Route::get('/destroyClient/{id}', [ClientController::class, 'destroy'])->name('destroyClient');
+        Route::get('/seeClient/{id}', [ClientController::class, 'seeClient'])->name('seeClient');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
