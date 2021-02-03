@@ -8,6 +8,7 @@ use App\Models\User;
 use Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -121,7 +122,7 @@ class UserController extends Controller
     {
         if ($user = User::find($id)) {
 
-            $data = $this->request->only('name', 'email', 'phone', 'type', 'avatar','status');
+            $data = $this->request->only('name', 'email', 'phone', 'type', 'avatar', 'status');
             $data['password'] = $user->password;
 
             if (isset($this->request->avatar)) {

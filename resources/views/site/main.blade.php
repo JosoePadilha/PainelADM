@@ -20,7 +20,7 @@
 
         @yield('content')
 
-        @include('assets.footer')
+        @include('site.footer')
 
         @include('assets.scriptsFooter')
 

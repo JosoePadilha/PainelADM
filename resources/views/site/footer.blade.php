@@ -1,8 +1,8 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="#">JP Desenvolvimentos</a>.</strong>
+    Todos os direitos reservados.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0-rc
+      <b>Versão</b> 1.0
     </div>
   </footer>
 

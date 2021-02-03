@@ -81,6 +81,17 @@ class ClientController extends Controller
         ]);
     }
 
+
+    public function viewClientDocument()
+    {
+        //$users = $user::orderBy('name', 'asc')->paginate(4);
+        return view('adm.showClientDocument', [
+            'clients' => DB::table('clients')
+            ->orWhere('status', '=', 'Ativo')
+            ->paginate(9)
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -190,6 +201,32 @@ class ClientController extends Controller
         }
     }
 
+    public function clientActive(Request $request)
+    {
+        if (isset($request->filter)) {
+            $filters = $request->except('_token');
+            $data = $request['filter'];
+            $clients = $this->searchActiveClient($data);
+            if (!$clients) {
+                $st = "error";
+                $message = "Não há registros!!";
+                return redirect()->route('searchClientsActive');
+            } else {
+                $st = "success";
+                $message = "Dados encontrados!!";
+
+                return view('adm.showClientDocument', [
+                    'clients' => $clients,
+                    'filters' => $filters,
+                    'st' => $st,
+                    'message' => $message,
+                ]);
+            }
+        } else {
+            return redirect()->route('searchClientsActive');
+        }
+    }
+
     public function resizeAvatar(Request $request)
     {
         if ($this->request->hasFile('avatar') && $this->request->avatar->isValid()) {
@@ -218,6 +255,20 @@ class ClientController extends Controller
                     ->orWhere("email", "LIKE", "%$filter%");
             }
         })->paginate();
+
+        return $result;
+    }
+
+    protected function searchActiveClient($filter = null)
+    {
+        $result = Client::orderBy('name', 'asc')->where(function ($query) use ($filter) {
+            if ($filter) {
+                $query->orWhere("name", "LIKE", "%$filter%")
+                    ->orWhere("email", "LIKE", "%$filter%")
+                    ->orWhere("status", "=", "Ativo");
+            }
+        })->paginate();
+        dd($result);
 
         return $result;
     }
