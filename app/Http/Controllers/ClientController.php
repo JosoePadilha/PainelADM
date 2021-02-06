@@ -77,7 +77,7 @@ class ClientController extends Controller
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.showClients', [
-            'clients' => DB::table('clients')->paginate(9)
+            'clients' => DB::table('clients')->orderby('name')->paginate(9)
         ]);
     }
 
@@ -88,7 +88,8 @@ class ClientController extends Controller
         return view('adm.showClientDocument', [
             'clients' => DB::table('clients')
             ->orWhere('status', '=', 'Ativo')
-            ->paginate(9)
+            ->orderBy('name', 'asc')
+            ->paginate(10)
         ]);
     }
 
@@ -223,7 +224,7 @@ class ClientController extends Controller
                 ]);
             }
         } else {
-            return redirect()->route('searchClientsActive');
+            return redirect()->route('showClientDocument');
         }
     }
 
@@ -265,10 +266,9 @@ class ClientController extends Controller
             if ($filter) {
                 $query->orWhere("name", "LIKE", "%$filter%")
                     ->orWhere("email", "LIKE", "%$filter%")
-                    ->orWhere("status", "=", "Ativo");
+                    ->orWhere("status", "==", "Ativo");
             }
         })->paginate();
-        dd($result);
 
         return $result;
     }

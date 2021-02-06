@@ -18,7 +18,7 @@
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
                                 placeholder="Nome ou e-mail do cliente">
-                                <button type="submit" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                <button type="submit" value="{{ old('name') }}" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div><!-- /input-group -->
                     </form>
                 </div>
@@ -29,38 +29,41 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                @foreach ($clients as $client)
-                    <div class="col-md-3">
-                        <div class="card card-primary card-outline">
-                            <div class="card-body box-profile">
-                                <div class="text-center">
-                                    @if($client->avatar)
-                                            <img src="{{ url('storage/'.$client->avatar) }}"
-                                            alt="user-avatar" class="profile-user-img img-fluid img-circle">
-                                        @else
-                                            <img src="{{ url('storage/avatarDefault.png') }}"
-                                            alt="user-avatar" class="profile-user-img img-fluid img-circle">
-                                        @endif
-                                </div>
-
-                                <h3 class="profile-username text-center">{{$client->name}}</h3>
-
-                                <p class="text-muted text-center">{{$client->city}}</p>
-
-                                <ul class="list-group list-group-unbordered mb-3">
-                                    <li class="list-group-item">
-                                        <b>CNPJ</b> <a class="float-right">{{$client->cnpj}}</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Telefone</b> <a class="float-right">{{$client->phone}}</a>
-                                    </li>
-                                </ul>
-                                <a href="#" class="btn btn-success btn-block"><b>Selecionar</b></a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>CNPJ</th>
+                                <th>E-mail</th>
+                                <th>Selecionar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($clients as $client)
+                                <tr>
+                                    <td>{{$client->name}}</td>
+                                    <td>{{$client->cnpj}}</td>
+                                    <td>{{$client->email}}</td>
+                                    <td><a href="#" class="btn btn-success"><b>Selecionar</b></a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <div class="card-footer">
+                <div class="row">
+                     <ul class="pagination esqueciSenha">
+                         @if (isset($filters))
+                             {{$clients->appends($filters)->links()}}
+                         @else
+                             {{$clients->links()}}
+                         @endif
+                     </ul>
+                </div>
+             </div>
         </div>
     </section>
+</div>
 @endsection
