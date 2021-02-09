@@ -42,3 +42,18 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de visualização dos dados -->
+<div class="modal fade" id="modalDocument"  role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><strong>Deseja emitir documento?</strong></h5>
+                </div>
+            <div class="modal-footer">
+                <a href="#" type="button" class="btn btn-info document-yes"><i class="fa fa-lg fa-thumbs-up"></i></a>
+                <a href="#" type="button" data-dismiss="modal" class="btn btn-danger"><i class="fa fa-lg fa-thumbs-down"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

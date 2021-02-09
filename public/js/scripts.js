@@ -259,4 +259,9 @@ $('.modalConfirma').on('click', function () {
         $('a.see-yes').attr('href', rout); // mudar dinamicamente o link, href do botão confirmar da modal
         $('#modalSee').modal('show'); // modal aparece
     }
+
+    else if (type === "document") {
+        $('a.document-yes').attr('href', rout); // mudar dinamicamente o link, href do botão confirmar da modal
+        $('#modalDocument').modal('show'); // modal aparece
+    }
 });

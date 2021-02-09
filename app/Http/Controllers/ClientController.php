@@ -264,9 +264,8 @@ class ClientController extends Controller
     {
         $result = Client::orderBy('name', 'asc')->where(function ($query) use ($filter) {
             if ($filter) {
-                $query->orWhere("name", "LIKE", "%$filter%")
-                    ->orWhere("email", "LIKE", "%$filter%")
-                    ->orWhere("status", "==", "Ativo");
+                $query->where('name', 'LIKE', "%$filter%")
+                    ->where('status', '=', 'Ativo');
             }
         })->paginate();
 

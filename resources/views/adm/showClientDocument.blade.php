@@ -17,7 +17,7 @@
                         @csrf
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
-                                placeholder="Nome ou e-mail do cliente">
+                                placeholder="Nome do cliente">
                                 <button type="submit" value="{{ old('name') }}" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div><!-- /input-group -->
                     </form>
@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <section class="content">
+    <section class="content animate__animated animate__fadeInUp">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 table-responsive">
@@ -45,7 +45,9 @@
                                     <td>{{$client->name}}</td>
                                     <td>{{$client->cnpj}}</td>
                                     <td>{{$client->email}}</td>
-                                    <td><a href="#" class="btn btn-success"><b>Selecionar</b></a></td>
+                                    <td><a data-type="document" data-rout="#"
+                                            type="button" data-dismiss="modal" class="btn btn-success modalConfirma">
+                                            <i class="fas fa-mouse-pointer"></i></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

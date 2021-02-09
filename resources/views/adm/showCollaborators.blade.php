@@ -27,7 +27,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content animate__animated animate__fadeInUp">
         <!-- Default box -->
         <div class="card card-solid">
             <div class="card-body pb-0">

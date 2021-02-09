@@ -13,7 +13,7 @@
       </div><!-- /.container-fluid -->
     </section>
 
-    <section class="content">
+    <section class="content animate__animated animate__fadeIn">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
