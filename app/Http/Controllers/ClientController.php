@@ -176,14 +176,6 @@ class ClientController extends Controller
         return redirect()->back()->with($st, $message);
     }
 
-    public function formDocument($id){
-        $client = Client::find($id);
-        return view('adm.documentClient', [
-            'client' => $client,
-        ]);
-    }
-
-
     public function searchClient(Request $request)
     {
         if (isset($request->filter)) {

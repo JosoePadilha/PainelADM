@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CLientController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/seeClient/{id}', [ClientController::class, 'seeClient'])->name('seeClient');
         Route::get('/showClientDocument', [ClientController::class, 'viewClientDocument'])->name('showClientDocument');
         Route::any('/searchClientsActive', [ClientController::class, 'clientActive'])->name('searchClientsActive');
-        Route::get('/formDocument/{id}', [ClientController::class, 'formDocument'])->name('formDocument');
+        Route::get('/formDocument/{id}', [DocumentController::class, 'index'])->name('formDocument');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
