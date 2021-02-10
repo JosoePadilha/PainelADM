@@ -36,7 +36,7 @@
                                 <th>Cliente</th>
                                 <th>CNPJ</th>
                                 <th>E-mail</th>
-                                <th>Selecionar</th>
+                                <th>Envio</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,9 +45,16 @@
                                     <td>{{$client->name}}</td>
                                     <td>{{$client->cnpj}}</td>
                                     <td>{{$client->email}}</td>
-                                    <td><a data-type="document" data-rout="#"
-                                            type="button" data-dismiss="modal" class="btn btn-success modalConfirma">
-                                            <i class="fas fa-mouse-pointer"></i></a></td>
+                                    <td>
+                                        <a data-type="document" data-rout="{{ route ('formDocument', $client->id) }}"
+                                            type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </a>
+                                        <a data-type="document" data-rout="{{ route ('formDocument', $client->id) }}"
+                                            type="button" data-dismiss="modal" class="btn btn-info modalConfirma">
+                                            <i class="fas fa-paperclip"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

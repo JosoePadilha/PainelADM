@@ -7,6 +7,11 @@
     color: white;
 }
 
+#description{
+    width: 250px;
+    height: 180px;
+}
+
 .logo{
     width: 80px;
     height: 80px;

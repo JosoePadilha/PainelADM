@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/seeClient/{id}', [ClientController::class, 'seeClient'])->name('seeClient');
         Route::get('/showClientDocument', [ClientController::class, 'viewClientDocument'])->name('showClientDocument');
         Route::any('/searchClientsActive', [ClientController::class, 'clientActive'])->name('searchClientsActive');
+        Route::get('/formDocument/{id}', [ClientController::class, 'formDocument'])->name('formDocument');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

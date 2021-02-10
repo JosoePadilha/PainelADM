@@ -72,69 +72,92 @@ $2y$10$oXy4BYgxsDfVIIOtu2wCtugJyVODIAxOFvpFXCBOLQR9QBihw8bK6
 
 
 @extends('site.main')
-@section('title', 'PainelADM - Clientes')
+@section('title', 'PainelADM - Emissão de documentos')
 @section('content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-md-3 col-sm-6">
-                    <h1>Clientes</h1>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                </div>
-                <p></p>
-                <div class="col-md-6 col-sm-6">
-                    <form class="busca" method="POST" action="/searchClientsActive">
-                        @csrf
-                        <div class="input-group">
-                            <input name="filter" type="text" class="form-control"
-                                placeholder="Nome ou e-mail do cliente">
-                                <button type="submit" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </div><!-- /input-group -->
-                    </form>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Emissão de documentos</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                @foreach ($clients as $client)
+        <section class="content animate__animated animate__fadeIn">
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col-md-3">
                         <div class="card card-primary card-outline">
-                            <div class="card-body box-profile">
-                                <div class="text-center">
-                                    @if($client->avatar)
-                                            <img src="{{ url('storage/'.$client->avatar) }}"
-                                            alt="user-avatar" class="profile-user-img img-fluid img-circle">
-                                        @else
-                                            <img src="{{ url('storage/avatarDefault.png') }}"
-                                            alt="user-avatar" class="profile-user-img img-fluid img-circle">
-                                        @endif
+                            <div class="card-header">
+                                <h3 class="card-title">Anexar documento</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
                                 </div>
-
-                                <h3 class="profile-username text-center">{{$client->name}}</h3>
-
-                                <p class="text-muted text-center">{{$client->city}}</p>
-
-                                <ul class="list-group list-group-unbordered mb-3">
-                                    <li class="list-group-item">
-                                        <b>CNPJ</b> <a class="float-right">{{$client->cnpj}}</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Telefone</b> <a class="float-right">{{$client->phone}}</a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="nav nav-pills flex-column">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <form action="#" enctype="multipart/form-data" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="card-body">
+                                                    <div class="form-row">
+                                                        <div class="form-group">
+                                                            <textarea placeholder="Descrição" id="description" name="description" class="form-control"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="btn btn-default btn-file">
+                                                                <i class="fas fa-paperclip"></i> Anexar
+                                                                <input id="document" type="file" name="document">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </a>
                                     </li>
                                 </ul>
-                                <a href="#" class="btn btn-success btn-block"><b>Selecionar</b></a>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Redigir documento</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="To:">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Subject:">
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="Descrição" id="description" name="description" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
+                                </div>
+                                <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 @endsection
+
