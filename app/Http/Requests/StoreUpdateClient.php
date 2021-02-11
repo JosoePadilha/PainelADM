@@ -98,6 +98,7 @@ class StoreUpdateClient extends FormRequest
             'city' => 'Cidade',
             'neighborhood' => 'Bairro',
             'number' => 'Número',
+            'avatar' => 'Imagem',
             'password' => 'Senha',
             'passwordRepit' => 'Repita a senha',
         ];

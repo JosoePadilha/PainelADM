@@ -12,11 +12,9 @@ function validarData(data, input) {
     var dia = data.substring(0, 2);
     var mes = data.substring(3, 5);
     var ano = data.substring(6, 11);
-    var anoAtual = dataAtual.getFullYear();
     var mesAtual = dataAtual.getMonth() + 1;
 
-    if (dia < 0 || dia > 31 || mes < 0 || mes > 12 || ano < 1900 ||
-        ano > anoAtual || mes > mesAtual && ano >= anoAtual) {
+    if (dia < 0 || dia > 31 || mes < 0 || mes > 12 || ano < 2020) {
         input.setCustomValidity('Data inválida');
     }
     else {

@@ -9,11 +9,13 @@ class Document extends Model
 {
     use HasFactory;
 
-    protected $table = 'clients';
+    protected $table = 'documents';
 
     protected $fillable = [
         'title',
         'dueDate',
         'document',
+        'idUser',
+        'idCLient',
     ];
 }

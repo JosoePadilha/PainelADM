@@ -20,26 +20,26 @@
                     <div class="card card-primary">
                         <div class="card-header">
                         </div>
-                        <form action="#" enctype="multipart/form-data" method="post">
+                        <form action="{{ route ('documentStore', $client->id) }}" enctype="multipart/form-data" method="post">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>*Título documento</label>
                                         <input type="text" required minlength="5" class="form-control"
-                                            name="nameDocument" id="nameDocument" placeholder="Título documento">
+                                            name="title" id="title" placeholder="Título documento">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>*Data vencimento</label>
-                                        <input type="date" required minlength="8" class="form-control"
-                                            name="dueDate" id="dueDate">
+                                        <input type="text" name="dueDate" id="dueDate" required onblur="javascript: validarData(this.value, this);"
+                                            class="form-control" data-mask="00/00/0000" min="01/01/2020" placeholder="* Data de vencimento">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <div class="btn btn-default btn-file">
                                             <i class="fas fa-paperclip"></i> Anexar
-                                            <input id="document" type="file" name="document">
+                                            <input required id="document" type="file" name="document">
                                         </div>
                                     </div>
                                 </div>

@@ -68,6 +68,7 @@ class StoreUpdateUser extends FormRequest
             'name' => 'Nome',
             'email' => 'E-mail',
             'phone' => 'Telefone',
+            'avatar' => 'Imagem',
             'password' => 'Senha',
             'passwordRepit' => 'Repita a senha',
         ];
