@@ -27,4 +27,9 @@ class CLient extends Model
         'number',
         'password',
     ];
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

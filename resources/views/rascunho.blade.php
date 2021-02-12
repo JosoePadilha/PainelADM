@@ -161,3 +161,20 @@ $2y$10$oXy4BYgxsDfVIIOtu2wCtugJyVODIAxOFvpFXCBOLQR9QBihw8bK6
     </div>
 @endsection
 
+
+
+public function index($id)
+    {
+        $client = Client::find($id);
+        $documents = $this->searchDocumentsCLient($client['id']);
+        return view('adm.documentClient', [
+            'client' => $client,
+            'documents' => $documents,
+        ]);
+    }
+
+
+    foreach ($documents as $document)
+        {
+            $document->dueDate = $this->convertDateBr($document->dueDate);
+        }

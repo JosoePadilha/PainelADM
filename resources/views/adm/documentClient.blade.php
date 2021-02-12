@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 col-sm-12">
-                                        <div class="btn btn-default btn-file">
+                                        <div class="btn btn-default btn-file col start">
                                             <i class="fas fa-paperclip"></i> Anexar
                                             <input required id="document" type="file" name="document">
                                         </div>
@@ -66,60 +66,49 @@
                                 <thead>
                                     <tr>
                                         <th>Documento</th>
-                                        <th>Data</th>
+                                        <th>Anexado</th>
                                         <th>Status</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Teste</td>
-                                        <td>Teste</td>
-                                        <td>Vencido</td>
-                                        <td>
-                                            <a data-type="document" data-rout=""
-                                                type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a data-type="document" data-rout=""
-                                                type="button" data-dismiss="modal" class="btn btn-danger modalConfirma">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Teste</td>
-                                        <td>Teste</td>
-                                        <td>Válido</td>
-                                        <td>
-                                            <a data-type="document" data-rout=""
-                                                type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a data-type="document" data-rout=""
-                                                type="button" data-dismiss="modal" class="btn btn-danger modalConfirma">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Teste</td>
-                                        <td>Teste</td>
-                                        <td>Válido</td>
-                                        <td>
-                                            <a data-type="document" data-rout=""
-                                                type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a data-type="document" data-rout=""
-                                                type="button" data-dismiss="modal" class="btn btn-danger modalConfirma">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($documents as $document)
+                                        <tr>
+                                            <td>{{$document->title}}</td>
+                                            <td>{{date('d/m/Y', strtotime($document->created_at))}}</td>
+                                            <td class="text-right py-0 align-middle">
+                                                <div class="btn-group btn-group-sm">
+                                                    @if ((date("Y-m-d")) > $document->dueDate)
+                                                        <a type="button" class="btn btn-danger"><i class="fa fa-lg fa-thumbs-down"></i></a>
+                                                    @else
+                                                        <a type="button" class="btn btn-success"><i class="fa fa-lg fa-thumbs-up"></i></a>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="text-right py-0 align-middle">
+                                                <div class="btn-group btn-group-sm">
+                                                    <a data-type="document" data-rout=""
+                                                        type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a data-type="document" data-rout=""
+                                                        type="button" data-dismiss="modal" class="btn btn-danger modalConfirma">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <ul class="pagination esqueciSenha">
+                                    {{$documents->links()}}
+                                </ul>
+                            </div>
+                         </div>
                     </div>
                 </div>
             </div>

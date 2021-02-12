@@ -23,20 +23,27 @@ class DocumentController extends Controller
     public function index($id)
     {
         $client = Client::find($id);
+        $documents = $this->searchDocumentsCLient($client['id']);
+
+        // foreach ($documents as $document)
+        // {
+        //     $document->dueDate = $this->convertDateBr($document->dueDate);
+        // }
+
         return view('adm.documentClient', [
             'client' => $client,
+            'documents' => $documents,
         ]);
     }
 
     public function store(StoreUpdateDocument $request, $idClient)
     {
         $data = $this->request->only('title', 'dueDate', 'document');
-        $data['idClient'] = intval($idClient);
-        $data['idUser'] = Auth::user()->id;
-        $data['dueDate'] = $this->convertDate($data);
-
+        $data['client_id'] = intval($idClient);
+        $data['user_id'] = Auth::user()->id;
+        $data['dueDate'] = $this->convertDate($data['dueDate']);
         $data['document'] = $this->upLoadPdf($this->request);
-        dd($data);
+
         if (Document::create($data)) {
             $st = "success";
             $message = "Documento anexado com sucesso!!";
@@ -45,15 +52,24 @@ class DocumentController extends Controller
             $message = "Não foi possível anexar o arquivo!!";
         }
 
-        return redirect()->back()->with($st, $message);
+        $documents = $this->searchDocumentsCLient($data['client_id']);
+
+        return redirect()->back()->with($st, $message, compact($documents));
     }
 
 
     protected function convertDate($data)
     {
-        $dado = str_replace("/", "-", $data['dueDate']);
-        $data['dueDate'] = date('Y-m-d', strtotime($dado));
-        return  $data['dueDate'];
+        $dado = str_replace("/", "-", $data);
+        $data = date('Y-m-d', strtotime($dado));
+        return  $data;
+    }
+
+    protected function convertDateBr($data)
+    {
+        $dado = str_replace("-", "/", $data);
+        $data = date('d-m-Y', strtotime($dado));
+        return $data;
     }
 
     public function upLoadPdf(Request $request)
@@ -67,7 +83,17 @@ class DocumentController extends Controller
             $file_path         = storage_path('app/pdfs/');
             $file->move($file_path, $stored_filename);
         }
-
         return $stored_filename;
+    }
+
+    protected function searchDocumentsCLient($filter = null)
+    {
+        $result = Document::orderBy('created_at', 'desc')->where(function ($query) use ($filter) {
+            if ($filter) {
+                $query->where('client_id', '=', $filter);
+            }
+        })->paginate(4);
+
+        return $result;
     }
 }

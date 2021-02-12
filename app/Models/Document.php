@@ -15,7 +15,17 @@ class Document extends Model
         'title',
         'dueDate',
         'document',
-        'idUser',
-        'idCLient',
+        'user_id',
+        'client_id',
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

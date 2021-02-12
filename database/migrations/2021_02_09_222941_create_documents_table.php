@@ -15,10 +15,10 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('idUser')->unsigned();
-            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('idClient')->unsigned();
-            $table->foreign('idClient')->references('id')->on('clients')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->string('title');
             $table->string('document');
             $table->date('dueDate');

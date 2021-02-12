@@ -89,13 +89,13 @@
                         <li class="nav-item">
                             <a href="/showClientDocument" class="nav-link">
                                 <i class="fa fa-file-pdf" aria-hidden="true"></i>
-                                <p>Emitir documento</p>
+                                <p>Enviar documento</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-list-ul" aria-hidden="true"></i>
-                                <p>Listar</p>
+                                <p>Gerar orçamento</p>
                             </a>
                         </li>
                     </ul>
