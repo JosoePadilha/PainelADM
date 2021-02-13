@@ -1,11 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="" class="brand-link">
-        @if(Auth::user()->avatar)
-            <img alt="Logo" class="brand-image img-circle elevation-3" src="{{ url('storage/'.Auth::user()->avatar) }}">
-        @else
-            <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
-        @endif
-        <span class="brand-text font-weight-light">Logo</span>
+        <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/protelim.jpg') }}" alt="logo">
+        <span class="brand-text font-weight-light">Painel ADM</span>
     </a>
 
     <div class="sidebar">

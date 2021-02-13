@@ -36,7 +36,7 @@
                                 <th>Cliente</th>
                                 <th>CNPJ</th>
                                 <th>E-mail</th>
-                                <th>Envio</th>
+                                <th>Selecionar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,10 +49,6 @@
                                         <a data-type="document" data-rout="{{ route ('formDocument', $client->id) }}"
                                             type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
                                             <i class="fas fa-paper-plane"></i>
-                                        </a>
-                                        <a data-type="document" data-rout="{{ route ('formDocument', $client->id) }}"
-                                            type="button" data-dismiss="modal" class="btn btn-info modalConfirma">
-                                            <i class="fas fa-paperclip"></i>
                                         </a>
                                     </td>
                                 </tr>

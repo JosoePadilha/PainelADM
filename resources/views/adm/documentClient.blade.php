@@ -16,7 +16,7 @@
     <section class="content animate__animated animate__fadeIn">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-5 col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
                         </div>
@@ -51,7 +51,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-7 col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Documentos anteriores</h3>
@@ -66,7 +66,8 @@
                                 <thead>
                                     <tr>
                                         <th>Documento</th>
-                                        <th>Anexado</th>
+                                        <th>Emissão</th>
+                                        <th>Vencimento</th>
                                         <th>Status</th>
                                         <th>Ação</th>
                                     </tr>
@@ -76,24 +77,25 @@
                                         <tr>
                                             <td>{{$document->title}}</td>
                                             <td>{{date('d/m/Y', strtotime($document->created_at))}}</td>
+                                            <td>{{date('d/m/Y', strtotime($document->dueDate))}}</td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
                                                     @if ((date("Y-m-d")) > $document->dueDate)
-                                                        <a type="button" class="btn btn-danger"><i class="fa fa-lg fa-thumbs-down"></i></a>
+                                                        <a type="button" class="btn btn-danger"><i class="fas fa-lg fa-times"></i></a>
                                                     @else
-                                                        <a type="button" class="btn btn-success"><i class="fa fa-lg fa-thumbs-up"></i></a>
+                                                        <a type="button" class="btn btn-success"><i class="fas fa-check"></i></a>
                                                     @endif
                                                 </div>
                                             </td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
-                                                    <a data-type="document" data-rout=""
-                                                        type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <a data-type="document" data-rout=""
+                                                    <a data-type="delete" data-rout="{{ route ('destroyDocument', $document->id) }}"
                                                         type="button" data-dismiss="modal" class="btn btn-danger modalConfirma">
                                                         <i class="fas fa-trash"></i>
+                                                    </a>
+                                                    <a href="{{ route ('download', $document->document) }}"
+                                                        type="button" class="btn btn-default modalConfirma">
+                                                        <i class="fas fa-download"></i>
                                                     </a>
                                                 </div>
                                             </td>

@@ -45,6 +45,11 @@ Route::middleware(['auth'])->group(function(){
         Route::any('/searchClientsActive', [ClientController::class, 'clientActive'])->name('searchClientsActive');
         Route::get('/formDocument/{id}', [DocumentController::class, 'index'])->name('formDocument');
         Route::post('/documentStore/{idClient}', [DocumentController::class, 'store'])->name('documentStore');
+        Route::get('/download/{link}', [DocumentController::class, 'download'])->name('download');
+        Route::get('/destroyDocument/{id}', [DocumentController::class, 'destroy'])->name('destroyDocument');
+        // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
+        //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
+        // });
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

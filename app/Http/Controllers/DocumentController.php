@@ -25,15 +25,15 @@ class DocumentController extends Controller
         $client = Client::find($id);
         $documents = $this->searchDocumentsCLient($client['id']);
 
-        // foreach ($documents as $document)
-        // {
-        //     $document->dueDate = $this->convertDateBr($document->dueDate);
-        // }
-
         return view('adm.documentClient', [
             'client' => $client,
             'documents' => $documents,
         ]);
+    }
+
+    public function download($link)
+    {
+        return response()->download(storage_path("app/pdfs/" . $link));
     }
 
     public function store(StoreUpdateDocument $request, $idClient)
@@ -57,6 +57,22 @@ class DocumentController extends Controller
         return redirect()->back()->with($st, $message, compact($documents));
     }
 
+    public function destroy($id)
+    {
+        $document = Document::find($id);
+
+        if ($document == null) {
+            $st = "error";
+            $message = "Não foi possível excluir o documento!!";
+        } else {
+            unlink(storage_path('app/pdfs/'. $document->document));
+            $document->delete();
+            $st = "success";
+            $message = "Documento excluído com sucesso!!";
+        }
+
+        return redirect()->back()->with($st, $message);
+    }
 
     protected function convertDate($data)
     {
