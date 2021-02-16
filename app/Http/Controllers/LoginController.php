@@ -60,8 +60,4 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function forgetPassword()
-    {
-        return view('forgetPassword');
-    }
 }

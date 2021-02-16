@@ -57,7 +57,7 @@ class StoreUpdateUser extends FormRequest
                 'name.required' => 'Nome Obrigatório',
                 'email.required' => 'E-mail Obrigatório',
                 'password.required' => 'Senha com no mímio 8 caracteres',
-                'passwordRepit.required' => 'Senhas não são iguais',
+                'password_confirmation.required' => 'Senhas não são iguais',
             ];
         }
     }
@@ -70,7 +70,7 @@ class StoreUpdateUser extends FormRequest
             'phone' => 'Telefone',
             'avatar' => 'Imagem',
             'password' => 'Senha',
-            'passwordRepit' => 'Repita a senha',
+            'password_confirmation' => 'Repita a senha',
         ];
     }
 }

@@ -100,7 +100,7 @@ class StoreUpdateClient extends FormRequest
             'number' => 'Número',
             'avatar' => 'Imagem',
             'password' => 'Senha',
-            'passwordRepit' => 'Repita a senha',
+            'password_confirmation' => 'Repita a senha',
         ];
     }
 }

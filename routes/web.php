@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CLientController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,13 @@ use App\Http\Controllers\DocumentController;
 
 Route::get('/', [loginController::class, 'index'])->name('/');
 Route::post('/login', [loginController::class, 'login'])->name('login');
-Route::get('/forgetPassword', [loginController::class, 'forgetPassword'])->name('forgetPassword');
+Route::get('/forgetPassword', [ResetPasswordController::class, 'forgetPassword'])->name('forgetPassword');
+Route::post('/sendMailReset', [ResetPasswordController::class, 'sendMailReset'])->name('sendMailReset');
+
+Route::get('/resetPassword/{token}/{email}', [ResetPasswordController::class, 'resetPassword'])->name('resetPassword');
+Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('reset');
+
+//Route::get('/resetPassword', [loginController::class, 'resetPassword'])->name('resetPassword');
 
 Route::middleware(['auth'])->group(function(){
     Route::middleware(['CheckAdm'])->group(function(){

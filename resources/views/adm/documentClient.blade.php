@@ -27,12 +27,12 @@
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>*Título documento</label>
                                         <input type="text" required minlength="5" class="form-control"
-                                            name="title" id="title" placeholder="Título documento">
+                                            name="title" value="{{ old('title') }}" id="title" placeholder="Título documento">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>*Data vencimento</label>
                                         <input type="text" name="dueDate" id="dueDate" required onblur="javascript: validarData(this.value, this);"
-                                            class="form-control" data-mask="00/00/0000" min="01/01/2020" placeholder="* Data de vencimento">
+                                            class="form-control" data-mask="00/00/0000" value="{{ old('dueDate') }}" min="01/01/2020" placeholder="* Data de vencimento">
                                     </div>
                                 </div>
                                 <div class="form-row">
