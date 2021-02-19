@@ -112,4 +112,19 @@ class DocumentController extends Controller
 
         return $result;
     }
+
+    public function showDocumentsVanquished(){
+
+        $datas = DB::table('clients')
+        ->join('documents', 'clients.id', '=', 'documents.client_id')
+        ->where('dueDate', '<', date("Y-m-d h:i:s"))
+        ->where('clients.status', '=', 'Ativo')
+        ->orderBy('clients.name', 'asc')
+        ->get();
+
+        return view('adm.showListDocuments', [
+            'datas' => $datas,
+        ]);
+
+    }
 }

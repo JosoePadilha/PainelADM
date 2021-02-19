@@ -9,19 +9,22 @@
         @include('assets.header')
     </head>
     <body class="hold-transition login-page">
+        @include('assets.modalsAlerts')
+
+        @include('assets.alerts')
         <div class="login-box">
             <div class="login-logo">
                 <a href="#"><b>Painel</b> ADM</a>
             </div>
-        <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Altere a sua senha {{$user->name}}</p>
-                    <form action="{{ route ('reset') }}" method="post">
+                    <form action="{{ route ('resetPasswordUser', $user) }}" method="post">
                         {{ csrf_field() }}
+
+                        <input hidden id="cod" name="cod" value="{{$token}}" type="text">
                         <div class="input-group mb-3">
-                            <input id="email" value="{{$user->email}}" type="hidden">
-                            <input type="password" minlength="8" required class="form-control" name="password"
+                            <input type="password" required minlength="8" class="form-control" name="password"
                                     id="password" placeholder="Senha" value="{{ old('password_confirmation') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -30,7 +33,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" minlength="8" required class="form-control" name="password_confirmation"
+                            <input type="password" required minlength="8" class="form-control" name="password_confirmation"
                                     id="password_confirmation" oninput="validaSenha(this)" placeholder="Repita a senha"
                                     value="{{ old('password_confirmation') }}">
                             <div class="input-group-append">

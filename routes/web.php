@@ -25,7 +25,7 @@ Route::get('/forgetPassword', [ResetPasswordController::class, 'forgetPassword']
 Route::post('/sendMailReset', [ResetPasswordController::class, 'sendMailReset'])->name('sendMailReset');
 
 Route::get('/resetPassword/{token}/{email}', [ResetPasswordController::class, 'resetPassword'])->name('resetPassword');
-Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('reset');
+Route::post('/resetPasswordUser/{user}', [ResetPasswordController::class, 'resetPasswordUser'])->name('resetPasswordUser');
 
 //Route::get('/resetPassword', [loginController::class, 'resetPassword'])->name('resetPassword');
 
@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/documentStore/{idClient}', [DocumentController::class, 'store'])->name('documentStore');
         Route::get('/download/{link}', [DocumentController::class, 'download'])->name('download');
         Route::get('/destroyDocument/{id}', [DocumentController::class, 'destroy'])->name('destroyDocument');
+        Route::get('/showDocumentsVanquished', [DocumentController::class, 'showDocumentsVanquished'])->name('showDocumentsVanquished');
         // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
         //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
         // });

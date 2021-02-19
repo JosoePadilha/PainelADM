@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Mail\sendMail;
+use App\Models\CLient;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -31,26 +32,72 @@ class ResetPasswordController extends Controller
         return view('forgetPassword');
     }
 
-    public function reset(ResetPasswordRequest $request)
+    public function resetPasswordUser(ResetPasswordRequest $request, $id)
     {
-        $data = $this->request;
-        dd($data);
-        dd('aqui');
+        if ($user = User::find($id)) {
+
+            $password = $this->request->only('password');
+            $token = $this->request->only('cod');
+            $data['password'] = bcrypt($password['password']);
+
+            $data['name'] = $user->name;
+            $data['status'] = $user->status;
+            $data['avatar'] = $user->avatar;
+            $data['type'] = $user->type;
+            $data['phone'] = $user->phone;
+            $data['email'] = $user->email;
+
+            $user->update($data);
+            $st = "success";
+            $message = "Senha alterada com sucesso!!";
+        } else if ($client = CLient::find($id)) {
+
+            $data['name'] = $client->name;
+            $data['status'] = $client->status;
+            $data['avatar'] = $client->avatar;
+            $data['type'] = $client->type;
+            $data['socialReason'] = $client->socialReason;
+            $data['cnpj'] = $client->cnpj;
+            $data['phone'] = $client->phone;
+            $data['celPhone'] = $client->celPhone;
+            $data['email'] = $client->email;
+            $data['city'] = $client->city;
+            $data['neighborhood'] = $client->neighborhood;
+            $data['state'] = $client->state;
+            $data['number'] = $client->number;
+
+            $password = $this->request->only('password');
+
+            $data['password'] = bcrypt($password['password']);
+
+            $client->update($data);
+            $st = "success";
+            $message = "Senha alterada com sucesso!!";
+        } else {
+            $st = "error";
+            $message = "Não foi possível alterar a senha!!";
+        }
+        return redirect()->route('/')->with($st, $message);
     }
 
     public function resetPassword($token, $email)
     {
         $user = DB::table('users')->where('email', $email)->first();
+        $client = DB::table('clients')->where('email', $email)->first();
 
-        if ($user == null) {
+        if ($user == null && $client == null) {
             $st = "error";
             $message = "E-mail não cadastrado!!";
             return redirect()->back()->with($st, $message);
         }
 
-        $user = User::find($user->id);
+        if($user <> null){
+            $user = User::find($user->id);
+        }else if($client <> null){
+            $user = Client::find($client->id);
+        }
 
-        $tokenRemember = DB::table('password_resets')->where('token', $token)->first();
+        $tokenRemember = DB::table('password_resets')->where('token', $token)->latest('created_at')->first();
 
         if ($tokenRemember) {
             if ($token == $tokenRemember->token) {
@@ -69,8 +116,8 @@ class ResetPasswordController extends Controller
 
     public function sendMailReset(Request $request)
     {
-        $this->validate($this->request,[
-            'email' =>'required|email:rfc,filter|min:10|max:255'
+        $this->validate($this->request, [
+            'email' => 'required|email:rfc,filter|min:10|max:255'
         ]);
         $data = $this->request->only('email');
         $user = DB::table('users')->where('email', '=', $data['email'])->first();
@@ -86,13 +133,13 @@ class ResetPasswordController extends Controller
         }
 
         if ($this->flag1 == true || $this->flag2 == true) {
-            DB::table('password_resets')->insert([
+            $tokenData = DB::table('password_resets')->insert([
                 'email' => $data['email'],
                 'token' => Str::random(60),
                 'created_at' => Carbon::now()
             ]);
 
-            $tokenData = DB::table('password_resets')->where('email', $data['email'])->first();
+            $tokenData = DB::table('password_resets')->where('email', $data['email'])->latest('created_at')->first();
 
             $this->link = $this->generateToken($data['email'], $tokenData->token, $this->flag1, $this->flag2);
 

@@ -28,8 +28,13 @@ class UserController extends Controller
      */
     public function dashboard()
     {
+        $numberClients = $this->clientTotal();
+        $numberUsers = $this->colaborattorTotal();
+        $numberDocuments = $this->expiredDocuments();
+
+
         if (Auth::user()->type == "Adm" || Auth::user()->type == "Usuario") {
-            return view('users.dashboard');
+            return view('users.dashboard', compact('numberClients', 'numberUsers', 'numberDocuments'));
         } else if (Auth::user()->type == "Cliente") {
             return view('clients.dashboard');
         } else {
@@ -234,5 +239,23 @@ class UserController extends Controller
         })->paginate();
 
         return $result;
+    }
+
+    public function clientTotal(){
+        $clients = DB::table('clients')->count();
+
+        return $clients;
+    }
+
+    public function colaborattorTotal(){
+        $users = DB::table('users')->count();
+
+        return $users;
+    }
+
+    public function expiredDocuments(){
+        $documents = DB::table('documents')->where('dueDate', '<', date("Y-m-d h:i:s"))->count();
+
+        return $documents;
     }
 }
