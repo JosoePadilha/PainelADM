@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CLientController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\FamilyProductController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ResetPasswordController;
 
 /*
@@ -56,6 +58,12 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/destroyDocument/{id}', [DocumentController::class, 'destroy'])->name('destroyDocument');
         Route::get('/showDocumentsVanquished', [DocumentController::class, 'showDocumentsVanquished'])->name('showDocumentsVanquished');
         Route::any('/searchClientsActiveDocument', [DocumentController::class, 'searchClientsActiveDocument'])->name('searchClientsActiveDocument');
+        Route::get('/createFamily', [FamilyProductController::class, 'create'])->name('createFamily');
+        Route::post('/storeFamily', [FamilyProductController::class, 'store'])->name('storeFamily');
+        Route::get('/showFamily', [FamilyProductController::class, 'show'])->name('showFamily');
+        Route::get('/destroyFamily/{id}', [FamilyProductController::class, 'destroy'])->name('destroyFamily');
+        Route::get('/editFamily/{id}', [FamilyProductController::class, 'edit'])->name('editFamily');
+        Route::put('/familyEdit/{id}', [FamilyProductController::class, 'update'])->name('familyEdit');
         // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
         //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
         // });

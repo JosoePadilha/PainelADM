@@ -3,9 +3,9 @@ function id(el) {
     return document.getElementById(el);
 }
 
-$("input[data-bootstrap-switch]").each(function(){
+$("input[data-bootstrap-switch]").each(function () {
     $(this).bootstrapSwitch('state', $(this).prop('checked'));
-  })
+})
 
 function validarData(data, input) {
     var dataAtual = new Date();
@@ -79,15 +79,15 @@ function moeda(z) {
 
 function validarCNPJ(cnpj, input) {
 
-    cnpj = cnpj.replace(/[^\d]+/g,'');
+    cnpj = cnpj.replace(/[^\d]+/g, '');
 
-    if(cnpj == '') {
+    if (cnpj == '') {
         input.setCustomValidity('CNPJ inválido!!');
         cnpj = "";
         return false;
     }
 
-    if (cnpj.length != 14){
+    if (cnpj.length != 14) {
         input.setCustomValidity('CNPJ inválido!!');
         cnpj = "";
         return false;
@@ -103,41 +103,41 @@ function validarCNPJ(cnpj, input) {
         cnpj == "66666666666666" ||
         cnpj == "77777777777777" ||
         cnpj == "88888888888888" ||
-        cnpj == "99999999999999"){
-            input.setCustomValidity('CNPJ inválido!!');
-            cnpj = "";
-            return false;
-        }
+        cnpj == "99999999999999") {
+        input.setCustomValidity('CNPJ inválido!!');
+        cnpj = "";
+        return false;
+    }
 
     // Valida DVs
     tamanho = cnpj.length - 2
-    numeros = cnpj.substring(0,tamanho);
+    numeros = cnpj.substring(0, tamanho);
     digitos = cnpj.substring(tamanho);
     soma = 0;
     pos = tamanho - 7;
     for (i = tamanho; i >= 1; i--) {
-      soma += numeros.charAt(tamanho - i) * pos--;
-      if (pos < 2)
+        soma += numeros.charAt(tamanho - i) * pos--;
+        if (pos < 2)
             pos = 9;
     }
     resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(0)){
+    if (resultado != digitos.charAt(0)) {
         input.setCustomValidity('CNPJ inválido!!');
         cnpj = "";
         return false;
     }
 
     tamanho = tamanho + 1;
-    numeros = cnpj.substring(0,tamanho);
+    numeros = cnpj.substring(0, tamanho);
     soma = 0;
     pos = tamanho - 7;
     for (i = tamanho; i >= 1; i--) {
-      soma += numeros.charAt(tamanho - i) * pos--;
-      if (pos < 2)
+        soma += numeros.charAt(tamanho - i) * pos--;
+        if (pos < 2)
             pos = 9;
     }
     resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(1)){
+    if (resultado != digitos.charAt(1)) {
         input.setCustomValidity('CNPJ inválidos!!');
         cnpj = "";
         return false;
@@ -225,12 +225,12 @@ function mtel(v) {
     return v;
 }
 
-function cnpj_mask(v){
-    v=v.replace(/\D/g,"")                           //Remove tudo o que não é dígito
-    v=v.replace(/^(\d{2})(\d)/,"$1.$2")             //Coloca ponto entre o segundo e o terceiro dígitos
-    v=v.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3") //Coloca ponto entre o quinto e o sexto dígitos
-    v=v.replace(/\.(\d{3})(\d)/,".$1/$2")           //Coloca uma barra entre o oitavo e o nono dígitos
-    v=v.replace(/(\d{4})(\d)/,"$1-$2")              //Coloca um hífen depois do bloco de quatro dígitos
+function cnpj_mask(v) {
+    v = v.replace(/\D/g, "")                           //Remove tudo o que não é dígito
+    v = v.replace(/^(\d{2})(\d)/, "$1.$2")             //Coloca ponto entre o segundo e o terceiro dígitos
+    v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3") //Coloca ponto entre o quinto e o sexto dígitos
+    v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")           //Coloca uma barra entre o oitavo e o nono dígitos
+    v = v.replace(/(\d{4})(\d)/, "$1-$2")              //Coloca um hífen depois do bloco de quatro dígitos
     return v
 }
 
@@ -257,7 +257,6 @@ $('.modalConfirma').on('click', function () {
         $('a.see-yes').attr('href', rout); // mudar dinamicamente o link, href do botão confirmar da modal
         $('#modalSee').modal('show'); // modal aparece
     }
-
     else if (type === "document") {
         $('a.document-yes').attr('href', rout); // mudar dinamicamente o link, href do botão confirmar da modal
         $('#modalDocument').modal('show'); // modal aparece

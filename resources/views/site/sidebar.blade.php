@@ -76,6 +76,50 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
+                        <i class="fab fa-buffer"></i>
+                        <p> Família de produtos
+                        <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/createFamily" class="nav-link">
+                                <i class="far fa-plus-square"></i>
+                                <p>Cadastrar família</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/showFamily" class="nav-link">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                <p>Listar famílias</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-dolly"></i>
+                        <p> Produtos
+                        <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus-square"></i>
+                                <p>Cadastrar produto</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                <p>Listar produtos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <p> Documentos
                         <i class="fas fa-angle-left right"></i>
@@ -86,12 +130,6 @@
                             <a href="/showClientDocument" class="nav-link">
                                 <i class="fa fa-file-pdf" aria-hidden="true"></i>
                                 <p>Enviar documento</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-list-ul" aria-hidden="true"></i>
-                                <p>Gerar orçamento</p>
                             </a>
                         </li>
                     </ul>
