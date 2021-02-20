@@ -65,7 +65,7 @@ class DocumentController extends Controller
             $st = "error";
             $message = "Não foi possível excluir o documento!!";
         } else {
-            unlink(storage_path('app/pdfs/'. $document->document));
+            unlink(storage_path('app/pdfs/' . $document->document));
             $document->delete();
             $st = "success";
             $message = "Documento excluído com sucesso!!";
@@ -113,18 +113,62 @@ class DocumentController extends Controller
         return $result;
     }
 
-    public function showDocumentsVanquished(){
-
+    public function showDocumentsVanquished($filter = null)
+    {
         $datas = DB::table('clients')
-        ->join('documents', 'clients.id', '=', 'documents.client_id')
-        ->where('dueDate', '<', date("Y-m-d h:i:s"))
-        ->where('clients.status', '=', 'Ativo')
-        ->orderBy('clients.name', 'asc')
-        ->get();
+            ->join('documents', 'clients.id', '=', 'documents.client_id')
+            ->where('dueDate', '<', date("Y-m-d h:i:s"))
+            ->where('clients.status', '=', 'Ativo')
+            ->orderBy('clients.name', 'asc')->where(function ($query) use ($filter) {
+                if ($filter) {
+                    $query->where('client_name', '=', $filter);
+                }
+            })->paginate();
 
         return view('adm.showListDocuments', [
             'datas' => $datas,
         ]);
+    }
 
+    public function searchClientsActiveDocument(Request $request)
+    {
+        if (isset($request->filter)) {
+            $filters = $request->except('_token');
+            $data = $request['filter'];
+            $datas = $this->searchActiveClient($data);
+            if (!$datas) {
+                $st = "error";
+                $message = "Não há registros!!";
+                return redirect()->route('showDocumentsVanquished');
+            } else {
+                $st = "success";
+                $message = "Dados encontrados!!";
+
+                return view('adm.showListDocuments', [
+                    'datas' => $datas,
+                    'filters' => $filters,
+                    'st' => $st,
+                    'message' => $message,
+                ]);
+            }
+        } else {
+            return redirect()->route('showDocumentsVanquished');
+        }
+    }
+
+    protected function searchActiveClient($filter = null)
+    {
+        $datas = DB::table('clients')
+            ->join('documents', 'clients.id', '=', 'documents.client_id')
+            ->where('dueDate', '<', date("Y-m-d h:i:s"))
+            ->where('clients.status', '=', 'Ativo')
+            ->orderBy('clients.name', 'asc')->where(function ($query) use ($filter) {
+                if ($filter) {
+                    $query->where('clients.name', 'LIKE', "%$filter%")
+                        ->where('status', '=', 'Ativo');
+                }
+            })->paginate();
+
+        return $datas;
     }
 }

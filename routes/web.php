@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/download/{link}', [DocumentController::class, 'download'])->name('download');
         Route::get('/destroyDocument/{id}', [DocumentController::class, 'destroy'])->name('destroyDocument');
         Route::get('/showDocumentsVanquished', [DocumentController::class, 'showDocumentsVanquished'])->name('showDocumentsVanquished');
+        Route::any('/searchClientsActiveDocument', [DocumentController::class, 'searchClientsActiveDocument'])->name('searchClientsActiveDocument');
         // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
         //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
         // });

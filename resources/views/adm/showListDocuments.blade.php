@@ -6,8 +6,19 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Documentos Vencidos</h1>
+                <div class="col-md-6 col-sm-6">
+                    <h1>Documentos vencidos</h1>
+                </div>
+                <p></p>
+                <div class="col-md-6 col-sm-6">
+                    <form class="busca" method="POST" action="/searchClientsActiveDocument">
+                        @csrf
+                        <div class="input-group">
+                            <input name="filter" type="text" class="form-control"
+                                placeholder="Nome do cliente">
+                                <button type="submit" value="{{ old('name') }}" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div><!-- /input-group -->
+                    </form>
                 </div>
             </div>
         </div>
@@ -33,7 +44,7 @@
                                     <td>{{date('d/m/Y', strtotime($data->dueDate))}}</td>
                                     <td>{{$data->title}}</td>
                                     <td>
-                                        <a data-type="document" data-rout="{{ route ('formDocument', $data->id) }}"
+                                        <a data-type="document" data-rout="{{ route ('formDocument', $data->user_id) }}"
                                             type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
                                             <i class="fas fa-paper-plane"></i>
                                         </a>
@@ -45,8 +56,16 @@
                 </div>
             </div>
             <div class="card-footer">
-
-             </div>
+                <div class="row">
+                     <ul class="pagination esqueciSenha">
+                         @if (isset($filters))
+                             {{$datas->appends($filters)->links()}}
+                         @else
+                             {{$datas->links()}}
+                         @endif
+                     </ul>
+                </div>
+            </div>
         </div>
     </section>
 </div>

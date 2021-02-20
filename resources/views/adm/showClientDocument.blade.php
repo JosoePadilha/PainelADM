@@ -13,7 +13,7 @@
                 </div>
                 <p></p>
                 <div class="col-md-6 col-sm-6">
-                    <form class="busca" method="POST" action="/searchClientsActive">
+                    <form class="busca" method="POST" action="/searchClientsActiveDocument">
                         @csrf
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
@@ -67,7 +67,7 @@
                          @endif
                      </ul>
                 </div>
-             </div>
+            </div>
         </div>
     </section>
 </div>
