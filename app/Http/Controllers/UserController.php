@@ -8,7 +8,6 @@ use App\Models\User;
 use Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -31,10 +30,11 @@ class UserController extends Controller
         $numberClients = $this->clientTotal();
         $numberUsers = $this->colaborattorTotal();
         $numberDocuments = $this->expiredDocuments();
+        $numberProducts = $this->productsTotal();
 
 
         if (Auth::user()->type == "Adm" || Auth::user()->type == "Usuario") {
-            return view('users.dashboard', compact('numberClients', 'numberUsers', 'numberDocuments'));
+            return view('users.dashboard', compact('numberClients', 'numberUsers', 'numberDocuments', 'numberProducts'));
         } else if (Auth::user()->type == "Cliente") {
             return view('clients.dashboard');
         } else {
@@ -249,6 +249,12 @@ class UserController extends Controller
 
     public function colaborattorTotal(){
         $users = DB::table('users')->count();
+
+        return $users;
+    }
+
+    public function productsTotal(){
+        $users = DB::table('products')->count();
 
         return $users;
     }

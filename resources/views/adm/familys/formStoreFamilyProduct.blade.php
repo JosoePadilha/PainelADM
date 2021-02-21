@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12 col-sm-12">
-                                        <label>*Nome</label>
+                                        <label>*Nome da família de produtos</label>
                                         <input type="text" required minlength="5" class="form-control"
                                             name="name" id="name" placeholder="Nome da família de produtos" value="{{ old('name') }}">
                                     </div>

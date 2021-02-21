@@ -46,7 +46,7 @@
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
-                                <a class="btn btn-success" href="/showClientDocument" role="button">Voltar</a>
+                                <a class="btn btn-success" href="{{ URL::previous() }}" role="button">Voltar</a>
                             </div>
                         </form>
                     </div>

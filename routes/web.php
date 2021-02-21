@@ -68,6 +68,10 @@ Route::middleware(['auth'])->group(function(){
         Route::get('createProduct', [ProductsController::class, 'create'])->name('createProduct');
         Route::post('/storeProduct', [ProductsController::class, 'store'])->name('storeProduct');
         Route::get('/showProducts', [ProductsController::class, 'showProductsFamily'])->name('showProducts');
+        Route::get('/destroyProduct/{id}', [ProductsController::class, 'destroy'])->name('destroyProduct');
+        Route::get('/editProduct/{id}', [ProductsController::class, 'edit'])->name('editProduct');
+        Route::put('/productEdit/{id}', [ProductsController::class, 'update'])->name('productEdit');
+        Route::any('/searchProduct', [ProductsController::class, 'searchProduct'])->name('searchProduct');
         // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
         //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
         // });

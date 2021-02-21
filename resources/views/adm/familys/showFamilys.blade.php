@@ -15,7 +15,7 @@
                         @csrf
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
-                                placeholder="Nome da família">
+                                placeholder="Nome da família de produtos">
                                 <button type="submit" value="{{ old('name') }}"
                                 class="btn btn-secondary" type="button"><i class="fa fa-search"
                                 aria-hidden="true"></i></button>
@@ -34,7 +34,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Ação</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -121,7 +121,7 @@ class DocumentController extends Controller
             ->where('clients.status', '=', 'Ativo')
             ->orderBy('clients.name', 'asc')->where(function ($query) use ($filter) {
                 if ($filter) {
-                    $query->where('client_name', '=', $filter);
+                    $query->where('client.name', 'LIKE', "%$filter%");
                 }
             })->paginate();
 

@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->bigInteger('family_id')->unsigned();
             $table->foreign('family_id')->references('id')->on('familys')->onDelete('cascade');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('price');
             $table->string('avatar')->nullable();
             $table->timestamps();

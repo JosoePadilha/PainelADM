@@ -44,7 +44,7 @@
                                     <td>{{date('d/m/Y', strtotime($data->dueDate))}}</td>
                                     <td>{{$data->title}}</td>
                                     <td>
-                                        <a data-type="document" data-rout="{{ route ('formDocument', $data->user_id) }}"
+                                        <a data-type="document" data-rout="{{ route ('formDocument', $data->client_id) }}"
                                             type="button" data-dismiss="modal" class="btn btn-primary modalConfirma">
                                             <i class="fas fa-paper-plane"></i>
                                         </a>
