@@ -105,13 +105,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/createProduct" class="nav-link">
                                 <i class="far fa-plus-square"></i>
                                 <p>Cadastrar produto</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/showProducts" class="nav-link">
                                 <i class="fa fa-list-ul" aria-hidden="true"></i>
                                 <p>Listar produtos</p>
                             </a>

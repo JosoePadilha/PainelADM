@@ -25,34 +25,13 @@ class StoreUpdateFamily extends FormRequest
     public function rules()
     {
         $id = $this->segment(2);
-
-        // if (Route::currentRouteName() == 'familyEdit') {
-        //     return [
-        //         'name' => "required|min:5|max:255,unique:familys,name,{$id},id",
-        //     ];
-        // } else {
-        //     return [
-        //         'name' => "required|min:5|max:255,unique:familys,name,{$id},id",
-        //     ];
-        // }
-
         return [
-            'name' => "required|min:5|max:255,unique:familys,name,{$id},id",
+            'name' => "required|min:5|max:255|unique:familys,name,{$id},id",
         ];
     }
 
     public function messages()
     {
-        // if (Route::currentRouteName() == 'familyEdit') {
-        //     return [
-        //         'name.required' => 'Nome da família obrigatório',
-        //     ];
-        // } else {
-        //     return [
-        //         'name.required' => 'Nome da família obrigatório',
-        //     ];
-        // }
-
         return [
             'name.required' => 'Nome da família obrigatório',
         ];

@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="col-md-7 col-sm-6">
-                    <div class="card card-primary">
+                    <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">Documentos anteriores</h3>
                             <div class="card-tools">

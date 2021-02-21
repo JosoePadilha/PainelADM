@@ -24,38 +24,20 @@ class StoreUpdateDocument extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(2);
-
-        if (Route::currentRouteName() == 'documentEdit') {
-            return [
-                'title' => 'required|min:10|max:255',
-                'dueDate' => 'required|min:10|max:255',
-                'document' => 'required|file|max:5000|mimes:pdf',
-            ];
-        } else {
-            return [
-                'title' => 'required|min:5|max:255',
-                'dueDate' => "required|min:8|max:10",
-                'document' => 'required|file|max:5000|mimes:pdf',
-            ];
-        }
+        return [
+            'title' => 'required|min:5|max:255',
+            'dueDate' => "required|min:8|max:10",
+            'document' => 'required|file|max:5000|mimes:pdf',
+        ];
     }
 
     public function messages()
     {
-        if (Route::currentRouteName() == 'documentEdit') {
-            return [
-                'title.required' => 'Título Obrigatório',
-                'dueDate.required' => 'Data de vencimento Obrigatória',
-                'document.required' => 'Documento Obrigatório',
-            ];
-        } else {
-            return [
-                'title.required' => 'Título Obrigatório',
-                'dueDate.required' => 'Data de vencimento Obrigatória',
-                'document.required' => 'Documento Obrigatório',
-            ];
-        }
+        return [
+            'title.required' => 'Título Obrigatório',
+            'dueDate.required' => 'Data de vencimento Obrigatória',
+            'document.required' => 'Documento Obrigatório',
+        ];
     }
 
     public function attributes()

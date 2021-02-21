@@ -11,12 +11,14 @@
                 </div>
                 <p></p>
                 <div class="col-md-6 col-sm-6">
-                    <form class="busca" method="POST" action="/#">
+                    <form class="busca" method="POST" action="/searchFamily">
                         @csrf
                         <div class="input-group">
                             <input name="filter" type="text" class="form-control"
                                 placeholder="Nome da família">
-                                <button type="submit" value="{{ old('name') }}" class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                <button type="submit" value="{{ old('name') }}"
+                                class="btn btn-secondary" type="button"><i class="fa fa-search"
+                                aria-hidden="true"></i></button>
                         </div>
                     </form>
                 </div>
@@ -57,6 +59,9 @@
             </div>
             <div class="card-footer">
                 <div class="row">
+                    <ul class="pagination justify-content-center m-0">
+                        <a class="btn btn-success" href="/createFamily" role="button">Cadastrar</a>
+                    </ul>
                      <ul class="pagination esqueciSenha">
                          @if (isset($filters))
                              {{$familys->appends($filters)->links()}}

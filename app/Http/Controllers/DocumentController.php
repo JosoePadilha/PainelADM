@@ -25,7 +25,7 @@ class DocumentController extends Controller
         $client = Client::find($id);
         $documents = $this->searchDocumentsCLient($client['id']);
 
-        return view('adm.documentClient', [
+        return view('adm.documents.documentClient', [
             'client' => $client,
             'documents' => $documents,
         ]);
@@ -125,7 +125,7 @@ class DocumentController extends Controller
                 }
             })->paginate();
 
-        return view('adm.showListDocuments', [
+        return view('adm.documents.showListDocuments', [
             'datas' => $datas,
         ]);
     }
@@ -144,7 +144,7 @@ class DocumentController extends Controller
                 $st = "success";
                 $message = "Dados encontrados!!";
 
-                return view('adm.showListDocuments', [
+                return view('adm.documents.showListDocuments', [
                     'datas' => $datas,
                     'filters' => $filters,
                     'st' => $st,

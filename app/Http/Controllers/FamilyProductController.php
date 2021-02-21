@@ -33,7 +33,7 @@ class FamilyProductController extends Controller
      */
     public function create()
     {
-        return view('adm.products.formStoreFamilyProduct');
+        return view('adm.familys.formStoreFamilyProduct');
     }
 
 
@@ -62,9 +62,35 @@ class FamilyProductController extends Controller
      */
     public function show(FamilyProducts $familyProducts)
     {
-        return view('adm.products.showFamilys', [
+        return view('adm.familys.showFamilys', [
             'familys' => DB::table('familys')->orderby('name')->paginate(9)
         ]);
+    }
+
+    public function searchFamily(Request $request)
+    {
+        if (isset($request->filter)) {
+            $filters = $request->only('name');
+            $data = $request['filter'];
+            $familys = $this->searchFamilyFilter($data);
+            if (!$familys) {
+                $st = "error";
+                $message = "Não há registros!!";
+                return redirect()->route('showFamily');
+            } else {
+                $st = "success";
+                $message = "Dados encontrados!!";
+
+                return view('adm.familys.showFamilys', [
+                    'familys' => $familys,
+                    'filters' => $filters,
+                    'st' => $st,
+                    'message' => $message,
+                ]);
+            }
+        } else {
+            return redirect()->route('showFamily');
+        }
     }
 
     /**
@@ -76,7 +102,7 @@ class FamilyProductController extends Controller
     public function edit($id)
     {
         $family = FamilyProducts::find($id);
-        return view('adm.products.formEditFamily', [
+        return view('adm.familys.formEditFamily', [
             'family' => $family,
         ]);
     }
@@ -131,5 +157,16 @@ class FamilyProductController extends Controller
             ->orWhere('name', '=', $data['name'])->first();
 
         return $check;
+    }
+
+    protected function searchFamilyFilter($filter = null)
+    {
+        $result = FamilyProducts::orderBy('name', 'asc')->where(function ($query) use ($filter) {
+            if ($filter) {
+                $query->orWhere("name", "LIKE", "%$filter%");
+            }
+        })->paginate();
+
+        return $result;
     }
 }

@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('adm.formStoreCollaborator');
+        return view('adm.users.formStoreCollaborator');
     }
 
 
@@ -89,7 +89,7 @@ class UserController extends Controller
     public function showCollaborator()
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
-        return view('adm.showCollaborators', [
+        return view('adm.users.showCollaborators', [
             'users' => DB::table('users')->paginate(9)
         ]);
     }
@@ -103,7 +103,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('adm.formEditCollaborator', [
+        return view('adm.users.formEditCollaborator', [
             'user' => $user,
         ]);
     }
@@ -111,7 +111,7 @@ class UserController extends Controller
     public function seeCollaborator($id)
     {
         $user = User::find($id);
-        return view('adm.seeCollaborator', [
+        return view('adm.users.seeCollaborator', [
             'user' => $user,
         ]);
     }
@@ -189,7 +189,7 @@ class UserController extends Controller
                 $st = "success";
                 $message = "Dados encontrados!!";
 
-                return view('adm.showCollaborators', [
+                return view('adm.users.showCollaborators', [
                     'users' => $users,
                     'filters' => $filters,
                     'st' => $st,

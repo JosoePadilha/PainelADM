@@ -35,7 +35,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('adm.formStoreClient');
+        return view('adm.clients.formStoreClient');
     }
 
     /**
@@ -76,7 +76,7 @@ class ClientController extends Controller
     public function showClients()
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
-        return view('adm.showClients', [
+        return view('adm.clients.showClients', [
             'clients' => DB::table('clients')->orderby('name')->paginate(9)
         ]);
     }
@@ -85,7 +85,7 @@ class ClientController extends Controller
     public function viewClientDocument()
     {
         //$users = $user::orderBy('name', 'asc')->paginate(4);
-        return view('adm.showClientDocument', [
+        return view('adm.documents.showClientDocument', [
             'clients' => DB::table('clients')
             ->orWhere('status', '=', 'Ativo')
             ->orderBy('name', 'asc')
@@ -102,7 +102,7 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = Client::find($id);
-        return view('adm.formEditClient', [
+        return view('adm.clients.formEditClient', [
             'client' => $client,
         ]);
     }
@@ -110,7 +110,7 @@ class ClientController extends Controller
     public function seeClient($id)
     {
         $client = Client::find($id);
-        return view('adm.seeClient', [
+        return view('adm.clients.seeClient', [
             'client' => $client,
         ]);
     }
@@ -190,7 +190,7 @@ class ClientController extends Controller
                 $st = "success";
                 $message = "Dados encontrados!!";
 
-                return view('adm.showClients', [
+                return view('adm.clients.showClients', [
                     'clients' => $clients,
                     'filters' => $filters,
                     'st' => $st,
@@ -216,7 +216,7 @@ class ClientController extends Controller
                 $st = "success";
                 $message = "Dados encontrados!!";
 
-                return view('adm.showClientDocument', [
+                return view('adm.documents.showClientDocument', [
                     'clients' => $clients,
                     'filters' => $filters,
                     'st' => $st,

@@ -59,31 +59,17 @@ class StoreUpdateClient extends FormRequest
 
     public function messages()
     {
-        if (Route::currentRouteName() == 'clientEdit') {
-            return [
-                'name.required' => 'Nome Obrigatório',
-                'socialReason.required' => 'Razão Social Obrigatória',
-                'cnpj.required' => 'CNPJ obrigatório',
-                'phone.required' => 'Telefone obrigatório',
-                'email.required' => 'E-mail Obrigatório',
-                'city.required' => 'Cidade Obrigatório',
-                'neighborhood.required' => 'Bairro Obrigatório',
-                'password.required' => 'Senha obrigatória',
-                'password_confirmation.required' => 'Senha repetida obrigatória',
-            ];
-        } else {
-            return [
-                'name.required' => 'Nome Obrigatório',
-                'socialReason.required' => 'Razão Social Obrigatória',
-                'cnpj.required' => 'CNPJ obrigatório',
-                'phone.required' => 'Telefone obrigatório',
-                'email.required' => 'E-mail Obrigatório',
-                'city.required' => 'Cidade Obrigatório',
-                'neighborhood.required' => 'Bairro Obrigatório',
-                'password.required' => 'Senha com no mímio 8 caracteres',
-                'password_confirmation.required' => 'Senhas não são iguais',
-            ];
-        }
+        return [
+            'name.required' => 'Nome Obrigatório',
+            'socialReason.required' => 'Razão Social Obrigatória',
+            'cnpj.required' => 'CNPJ obrigatório',
+            'phone.required' => 'Telefone obrigatório',
+            'email.required' => 'E-mail Obrigatório',
+            'city.required' => 'Cidade Obrigatório',
+            'neighborhood.required' => 'Bairro Obrigatório',
+            'password.required' => 'Senha com no mímio 8 caracteres',
+            'password_confirmation.required' => 'Senhas não são iguais',
+        ];
     }
 
     public function attributes()
