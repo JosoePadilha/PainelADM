@@ -30,11 +30,11 @@
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-3 col-sm-6">
-                                <a href="" class="brand-link">
+                                <a>
                                     @if($user->avatar)
-                                        <img alt="Logo" class="logo img-circle elevation-3" src="{{ url('storage/'.$user->avatar) }}">
+                                        <img alt="Logo" class="seeAvatar img-circle elevation-3" src="{{ url('storage/'.$user->avatar) }}">
                                     @else
-                                        <img alt="Logo" class="logo img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
+                                        <img alt="Logo" class="seeAvatar img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
                                     @endif
                                 </a>
                             </div>

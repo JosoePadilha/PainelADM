@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Alterando dados</h1>
+                    <h1></h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -21,6 +21,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
             <div class="card-header">
+                Alterando dados
             </div>
             <!-- /.card-header -->
             <!-- form start -->

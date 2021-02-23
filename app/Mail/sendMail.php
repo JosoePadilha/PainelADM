@@ -35,10 +35,18 @@ class sendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->message)
-        ->view('site.messageMail', [
-            'user' => $this->user,
-            'link' => $this->link,
-        ]);
+
+        if ($this->link == null) {
+            return $this->subject($this->message)
+                ->view('site.messageDocument', [
+                    'user' => $this->user,
+                ]);
+        } else {
+            return $this->subject($this->message)
+                ->view('site.messageMail', [
+                    'user' => $this->user,
+                    'link' => $this->link,
+                ]);
+        }
     }
 }

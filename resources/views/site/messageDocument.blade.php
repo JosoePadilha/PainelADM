@@ -11,17 +11,15 @@
             </div>
             <div class="card card-primary col-md-6">
                 <div class="card-header card-primary">
-                    Alteação de senha
+                    Documento recebido - PainelADM
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><h2>Olá {{$user->name}}</h2></h5>
-                    <p class="card-text">Você solicitou alteração de senha para o
-                        PainelADM, clique no botão abaixo para alterar.</p>
-                        <a href="{{$link}}"><button style="background: #069cc2; border-radius: 6px;
-                        padding: 15px; cursor: pointer; color: #fff; border: none; font-size:
-                        16px;">Alterar senha</button></a>
+                    <p class="card-text">Você recebeu em sua área do cliente o documento<br>
+                        <h3>{{$user->documentTitle}}</h3>
+                    </p>
                     <p>
-                        Se não foi você quem solicitou, ignore esta mensagem.
+                       Obirgado por utilizar nossos serviços!!
                     </p>
                 </div>
             </div>

@@ -14,9 +14,9 @@
 
 
 .logo{
-    width: 80px;
-    height: 80px;
-    background-color: #000;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
     color: #FFF;
 
     /* Agora a mágica */
@@ -24,15 +24,33 @@
 }
 
 .avatar{
-    width: 60px;
-    height: 60px;
-    background-color: #000;
+    margin-top: 18px;
+    margin-left: 5px;
+    width: 40px;
+    height: 40px;
     color: #FFF;
 
-   /* Agora a mágica */
-   border-radius: 50%;
+    /* Agora a mágica */
+    border-radius: 50%;
+}
+
+.seeAvatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.showAvatar{
+    margin-top: 10px;
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
+    margin-left: 40px;
 }
 
 .showLogo{
     margin-top: 10px;
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
 }

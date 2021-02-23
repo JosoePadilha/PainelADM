@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CLient;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateClient;
+use App\Models\User;
 use Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -45,9 +46,21 @@ class ClientController extends Controller
      */
     public function store(StoreUpdateClient $request)
     {
-        $data = $this->request->only
-        ('name', 'status', 'avatar', 'socialReason', 'cnpj', 'phone', 'celPhone', 'email', 'city',
-        'neighborhood', 'state', 'number', 'password');
+        $data = $this->request->only(
+            'name',
+            'status',
+            'avatar',
+            'socialReason',
+            'cnpj',
+            'phone',
+            'celPhone',
+            'email',
+            'city',
+            'neighborhood',
+            'state',
+            'number',
+            'password'
+        );
 
         $client = $this->checkClientExistence($data);
 
@@ -56,9 +69,18 @@ class ClientController extends Controller
             $data['type'] = 'Cliente';
             $data['avatar'] = $this->resizeAvatar($this->request);
             $data['status'] = 'Ativo';
-            CLient::create($data);
-            $st = "success";
-            $message = "Cadastro efetuado com sucesso!!";
+
+            $user = null;
+            $user = User::where('email', $this->request->email)->first();
+
+            if ($user) {
+                $st = "error";
+                $message = "E-mail já cadastrado para algum usuário!!";
+            } else {
+                CLient::create($data);
+                $st = "success";
+                $message = "Cadastro efetuado com sucesso!!";
+            }
         } else {
             $st = "error";
             $message = "Não foi possível cadastrar, e-mail já cadastrados!!";
@@ -86,9 +108,9 @@ class ClientController extends Controller
         //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.documents.showClientDocument', [
             'clients' => DB::table('clients')
-            ->orWhere('status', '=', 'Ativo')
-            ->orderBy('name', 'asc')
-            ->paginate(10)
+                ->orWhere('status', '=', 'Ativo')
+                ->orderBy('name', 'asc')
+                ->paginate(10)
         ]);
     }
 
@@ -125,9 +147,22 @@ class ClientController extends Controller
     {
         if ($client = Client::find($id)) {
 
-            $data = $this->request->only
-            ('name', 'type', 'status', 'avatar', 'socialReason', 'cnpj', 'phone', 'celPhone', 'email', 'city',
-            'neighborhood', 'state', 'number', 'password');
+            $data = $this->request->only(
+                'name',
+                'type',
+                'status',
+                'avatar',
+                'socialReason',
+                'cnpj',
+                'phone',
+                'celPhone',
+                'email',
+                'city',
+                'neighborhood',
+                'state',
+                'number',
+                'password'
+            );
 
             $data['password'] = $client->password;
 
@@ -142,9 +177,17 @@ class ClientController extends Controller
                 $data['avatar'] = "";
             }
 
-            $client->update($data);
-            $st = "success";
-            $message = "Dados alterados com sucesso!!";
+            $user = null;
+            $user = User::where('email', $this->request->email)->first();
+
+            if ($user) {
+                $st = "error";
+                $message = "E-mail já cadastrado para algum usuário!!";
+            } else {
+                $client->update($data);
+                $st = "success";
+                $message = "Dados alterados com sucesso!!";
+            }
         } else {
             $st = "error";
             $message = "Não foi possível alterar!!";

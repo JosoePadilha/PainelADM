@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Visualisando dados</h1>
+                    <h1></h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -25,11 +25,11 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="form-group col-md-4 col-sm-6">
-                                    <a href="" class="brand-link">
+                                    <a>
                                         @if($client->avatar)
-                                            <img alt="Logo" class="logo img-circle elevation-3" src="{{ url('storage/'.$client->avatar) }}">
+                                            <img alt="Logo" class="seeAvatar img-circle elevation-3" src="{{ url('storage/'.$client->avatar) }}">
                                         @else
-                                            <img alt="Logo" class="logo img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
+                                            <img class="seeAvatar img-circle elevation-3" style="opacity: .8" src="{{ url('storage/avatarDefault.png') }}" alt="logo">
                                         @endif
                                     </a>
                                 </div>

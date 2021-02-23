@@ -12706,7 +12706,7 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
 .layout-top-nav .wrapper .main-header .brand-image {
     margin-top  : -.5rem;
     margin-right: .2rem;
-    height      : 33px
+    border-radius: 50%;
 }
 
 .layout-top-nav .wrapper .main-sidebar {
@@ -13261,6 +13261,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .user-panel {
+    height: 80px;
     position: relative
 }
 
@@ -13280,7 +13281,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 .user-panel .image {
     display     : inline-block;
-    padding-left: .8rem
+    /* padding-left: .8rem */
 }
 
 .user-panel img {
@@ -23755,7 +23756,7 @@ a.disabled.mailbox-attachment-close {
 .projects img.table-avatar {
     border-radius: 50%;
     display      : inline;
-    width        : 2.5rem
+    width        : 3.0rem
 }
 
 .projects .project-state {
@@ -31574,7 +31575,8 @@ blockquote.quote-gray-dark h6 {
 }
 
 .elevation-2 {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23) !important
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23) !important;
+    width        : 3.0rem
 }
 
 .elevation-3 {

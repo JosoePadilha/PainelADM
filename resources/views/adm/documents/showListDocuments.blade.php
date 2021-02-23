@@ -41,7 +41,12 @@
                             @foreach ($datas as $data)
                                 <tr>
                                     <td>{{$data->name}}</td>
-                                    <td>{{date('d/m/Y', strtotime($data->dueDate))}}</td>
+                                    <td>@if ($data->dueDate <> NULL)
+                                        {{date('d/m/Y', strtotime($data->dueDate))}}
+                                    @else
+                                        ---
+                                    @endif
+                                    </td>
                                     <td>{{$data->title}}</td>
                                     <td>
                                         <a data-type="document" data-rout="{{ route ('formDocument', $data->client_id) }}"

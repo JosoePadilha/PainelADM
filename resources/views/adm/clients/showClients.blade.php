@@ -51,10 +51,10 @@
                                     <div class="col-5 text-center">
                                         @if($client->avatar)
                                             <img src="{{ url('storage/'.$client->avatar) }}"
-                                            alt="user-avatar" class="showLogo img-circle img-fluid">
+                                            alt="user-avatar" class="showAvatar img-circle elevation-3">
                                         @else
                                             <img src="{{ url('storage/avatarDefault.png') }}"
-                                            alt="user-avatar" class="showLogo img-circle img-fluid">
+                                            alt="user-avatar" class="showAvatar img-circle elevation-3">
                                         @endif
                                     </div>
                                 </div>

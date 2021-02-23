@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateUser;
+use App\Models\CLient;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Image;
@@ -70,9 +71,18 @@ class UserController extends Controller
         if ($user == null) {
             $data['avatar'] = $this->resizeAvatar($this->request);
             $data['status'] = 'Ativo';
-            User::create($data);
-            $st = "success";
-            $message = "Cadastro efetuado com sucesso!!";
+
+            $client = null;
+            $client = Client::where('email', $this->request->email)->first();
+
+            if ($client) {
+                $st = "error";
+                $message = "E-mail já cadastrado para algum cliente!!";
+            } else {
+                User::create($data);
+                $st = "success";
+                $message = "Cadastro efetuado com sucesso!!";
+            }
         } else {
             $st = "error";
             $message = "Não foi possível cadastrar, e-mail já cadastrados!!";
@@ -141,9 +151,17 @@ class UserController extends Controller
                 $data['avatar'] = "";
             }
 
-            $user->update($data);
-            $st = "success";
-            $message = "Dados alterados com sucesso!!";
+            $client = null;
+            $client = Client::where('email', $this->request->email)->first();
+
+            if ($client) {
+                $st = "error";
+                $message = "E-mail já cadastrado para algum cliente!!";
+            } else {
+                $user->update($data);
+                $st = "success";
+                $message = "Dados alterados com sucesso!!";
+            }
         } else {
             $st = "error";
             $message = "Não foi possível alterar!!";
@@ -241,26 +259,34 @@ class UserController extends Controller
         return $result;
     }
 
-    public function clientTotal(){
+    public function clientTotal()
+    {
         $clients = DB::table('clients')->count();
 
         return $clients;
     }
 
-    public function colaborattorTotal(){
+    public function colaborattorTotal()
+    {
         $users = DB::table('users')->count();
 
         return $users;
     }
 
-    public function productsTotal(){
+    public function productsTotal()
+    {
         $users = DB::table('products')->count();
 
         return $users;
     }
 
-    public function expiredDocuments(){
-        $documents = DB::table('documents')->where('dueDate', '<', date("Y-m-d h:i:s"))->count();
+    public function expiredDocuments()
+    {
+        $documents = DB::table('documents')
+            ->join('clients', 'clients.id', '=', 'documents.client_id')
+            ->where('dueDate', '<', date("Y-m-d h:i:s"))
+            ->where('clients.status', '=', 'Ativo')
+            ->count();
 
         return $documents;
     }

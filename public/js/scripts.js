@@ -23,7 +23,10 @@ function validarData(data, input) {
 }
 
 function validaTelefone(fone, input) {
-    if (fone.length < 14 || fone.length > 15) {
+    if(fone.length == null){
+        input.setCustomValidity('');
+    }
+    else if (fone.length > 0 && fone.length < 14 || fone.length > 15) {
         input.setCustomValidity('Telefone inválido');
     } else {
         input.setCustomValidity('');

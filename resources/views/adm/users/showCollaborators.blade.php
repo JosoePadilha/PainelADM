@@ -38,23 +38,21 @@
                             <div class="card-body pt-0">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="lead showLogo"><b>{{$user->name}}</b></h2>
+                                        <h2 class="lead"><b>{{$user->name}}</b></h2>
                                         <p class="text-muted text-sm"><b>Acesso: </b>{{$user->type}}</p>
                                         <ul class="ml-4 mb-0 fa-ul text-muted">
                                             <li class="small"><span class="fa-li"><i class="fa fa-check-square"></i></span> Status: {{$user->status}}</li>
-                                            <p></p>
                                             <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone: {{$user->phone}}</li>
-                                            <p></p>
                                             <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></i></span> E-mail: {{$user->email}}</li>
                                         </ul>
                                     </div>
                                     <div class="col-5 text-center">
                                         @if($user->avatar)
                                             <img src="{{ url('storage/'.$user->avatar) }}"
-                                            alt="user-avatar" class="showLogo img-circle img-fluid">
+                                            alt="user-avatar" class="showAvatar img-circle elevation-3">
                                         @else
                                             <img src="{{ url('storage/avatarDefault.png') }}"
-                                            alt="user-avatar" class="showLogo img-circle img-fluid">
+                                            alt="user-avatar" class="showAvatar img-circle elevation-3">
                                         @endif
                                     </div>
                                 </div>

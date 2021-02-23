@@ -47,7 +47,7 @@
                                 <p>Total de produtos</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="fas fa-swimming-pool"></i>
                             </div>
                             <a href="/showProducts" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -65,39 +65,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <section class="col-lg-7 connectedSortable">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://img.freepik.com/fotos-gratis/linda-familia-se-divertindo-em-uma-piscina_142605-874.jpg?size=626&ext=jpg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://us.123rf.com/450wm/yarruta/yarruta1705/yarruta170500173/78436710-familia-feliz-divertirse-en-las-vacaciones-de-verano-padre-madre-y-ni%C3%B1o-jugando-en-la-piscina-concepto-.jpg?ver=6" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://st.depositphotos.com/1053646/2772/i/600/depositphotos_27720747-stock-photo-happy-family-in-the-pool.jpg" alt="Third slide">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </section>
+                <section class="content">
 
-                    <section class="col-lg-5 connectedSortable">
-                    </section>
-                </div>
+                </section>
             </div>
         </section>
     </div>

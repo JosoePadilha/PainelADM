@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Emissão de documento</h1>
+                    <h1></h1>
                 </div>
             </div>
         </div>
@@ -19,6 +19,7 @@
                 <div class="col-md-5 col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
+                            Emissão de documento
                         </div>
                         <form action="{{ route ('documentStore', $client->id) }}" enctype="multipart/form-data" method="post">
                             {{ csrf_field() }}
@@ -30,9 +31,9 @@
                                             name="title" value="{{ old('title') }}" id="title" placeholder="Título documento">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
-                                        <label>*Data vencimento</label>
-                                        <input type="text" name="dueDate" id="dueDate" required onblur="javascript: validarData(this.value, this);"
-                                            class="form-control" data-mask="00/00/0000" value="{{ old('dueDate') }}" min="01/01/2020" placeholder="* Data de vencimento">
+                                        <label>Data vencimento</label>
+                                        <input type="text" name="dueDate" id="dueDate" onblur="javascript: validarData(this.value, this);"
+                                            class="form-control" data-mask="00/00/0000" value="{{ old('dueDate') }}" min="01/01/2020" placeholder="Data de vencimento">
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -77,13 +78,26 @@
                                         <tr>
                                             <td>{{$document->title}}</td>
                                             <td>{{date('d/m/Y', strtotime($document->created_at))}}</td>
-                                            <td>{{date('d/m/Y', strtotime($document->dueDate))}}</td>
+                                            <td>@if ($document->dueDate <> NULL)
+                                                {{date('d/m/Y', strtotime($document->dueDate))}}
+                                            @else
+                                                <center>
+                                                    ---
+                                                </center>
+                                            @endif
+                                            </td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
-                                                    @if ((date("Y-m-d")) > $document->dueDate)
-                                                        <a type="button" class="btn btn-danger"><i class="fas fa-lg fa-times"></i></a>
+                                                    @if ((date("Y-m-d")) > $document->dueDate && $document->dueDate <> NULL)
+                                                      <span class="badge badge-danger">Vencido</span>
                                                     @else
-                                                        <a type="button" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                                        @if ($document->dueDate <> NULL)
+                                                        <span class="badge badge-success">Válido</span>
+                                                        @else
+                                                            <center>
+                                                                ---
+                                                            </center>
+                                                        @endif
                                                     @endif
                                                 </div>
                                             </td>

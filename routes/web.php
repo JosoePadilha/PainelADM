@@ -34,6 +34,8 @@ Route::post('/resetPasswordUser/{user}', [ResetPasswordController::class, 'reset
 Route::middleware(['auth'])->group(function(){
     Route::middleware(['CheckAdm'])->group(function(){
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+        //Collaborators
         Route::get('/createdCollaborator', [UserController::class, 'create'])->name('createdCollaborator');
         Route::get('/showCollaborator', [UserController::class, 'showCollaborator'])->name('showCollaborator');
         Route::get('/destroyCollaborator/{id}', [UserController::class, 'destroy'])->name('destroyCollaborator');
@@ -42,6 +44,8 @@ Route::middleware(['auth'])->group(function(){
         Route::put('/collaboratorEdit/{id}', [UserController::class, 'update'])->name('collaboratorEdit');
         Route::get('/seeCollaborator/{id}', [UserController::class, 'seeCollaborator'])->name('seeCollaborator');
         Route::any('/searchCollaborator', [UserController::class, 'searchCollaborator'])->name('searchCollaborator');
+
+        //Clients
         Route::get('/createdClient', [CLientController::class, 'create'])->name('createdClient');
         Route::post('/clientStore', [CLientController::class, 'store'])->name('clientStore');
         Route::get('/showClients', [ClientController::class, 'showClients'])->name('showClients');
@@ -50,6 +54,8 @@ Route::middleware(['auth'])->group(function(){
         Route::put('/clientEdit/{id}', [ClientController::class, 'update'])->name('clientEdit');
         Route::get('/destroyClient/{id}', [ClientController::class, 'destroy'])->name('destroyClient');
         Route::get('/seeClient/{id}', [ClientController::class, 'seeClient'])->name('seeClient');
+
+        //Documents
         Route::get('/showClientDocument', [ClientController::class, 'viewClientDocument'])->name('showClientDocument');
         Route::any('/searchClientsActive', [ClientController::class, 'clientActive'])->name('searchClientsActive');
         Route::get('/formDocument/{id}', [DocumentController::class, 'index'])->name('formDocument');
@@ -58,6 +64,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/destroyDocument/{id}', [DocumentController::class, 'destroy'])->name('destroyDocument');
         Route::get('/showDocumentsVanquished', [DocumentController::class, 'showDocumentsVanquished'])->name('showDocumentsVanquished');
         Route::any('/searchClientsActiveDocument', [DocumentController::class, 'searchClientsActiveDocument'])->name('searchClientsActiveDocument');
+
+        //FamilyProducts
         Route::get('/createFamily', [FamilyProductController::class, 'create'])->name('createFamily');
         Route::post('/storeFamily', [FamilyProductController::class, 'store'])->name('storeFamily');
         Route::get('/showFamily', [FamilyProductController::class, 'show'])->name('showFamily');
@@ -65,6 +73,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/editFamily/{id}', [FamilyProductController::class, 'edit'])->name('editFamily');
         Route::put('/familyEdit/{id}', [FamilyProductController::class, 'update'])->name('familyEdit');
         Route::any('/searchFamily', [FamilyProductController::class, 'searchFamily'])->name('searchFamily');
+
+        //Products
         Route::get('createProduct', [ProductsController::class, 'create'])->name('createProduct');
         Route::post('/storeProduct', [ProductsController::class, 'store'])->name('storeProduct');
         Route::get('/showProducts', [ProductsController::class, 'showProductsFamily'])->name('showProducts');

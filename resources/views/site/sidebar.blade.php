@@ -1,20 +1,20 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="" class="brand-link">
-        <img alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8" src="{{ url('storage/protelim.jpg') }}" alt="logo">
+    <a href="#" class="brand-link">
+        <img class="logo img-circle elevation-3" style="opacity: .8" src="{{ url('storage/protelim.jpg') }}" alt="logo">
         <span class="brand-text font-weight-light">Painel ADM</span>
     </a>
 
     <div class="sidebar">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel">
             <div class="image">
                 @if(Auth::user()->avatar)
-                    <img src="{{ url('storage/'.Auth::user()->avatar) }}" class="img-circle elevation-3" alt="User Image">
+                    <img src="{{ url('storage/'.Auth::user()->avatar) }}" class="avatar img-circle elevation-3" alt="User Image">
                 @else
-                    <img src="{{ url('storage/avatarDefault.png') }}" class="img-circle elevation-3" alt="User Image">
+                    <img src="{{ url('storage/avatarDefault.png') }}" class="avatar img-circle elevation-3" alt="User Image">
                 @endif
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{Session('firstNameUser')}}</a>
+                <a href="#" class="d-block brand-text">{{Session('firstNameUser')}}</a>
             </div>
         </div>
 

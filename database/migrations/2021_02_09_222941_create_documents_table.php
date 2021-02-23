@@ -21,7 +21,7 @@ class CreateDocumentsTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->string('title');
             $table->string('document');
-            $table->date('dueDate');
+            $table->date('dueDate')->nullable();
             $table->timestamps();
         });
     }

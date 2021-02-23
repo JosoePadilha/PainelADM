@@ -55,7 +55,7 @@
                                         </ul>
                                     </td>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->price}}</td>
+                                    <td>R$ {{$product->price}}</td>
                                     <td>{{$product->family}}</td>
                                     <td>
                                         <a data-type="edit" data-rout="{{ route ('editProduct', $product->id) }}"

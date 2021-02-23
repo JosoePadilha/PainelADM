@@ -91,9 +91,9 @@ class ResetPasswordController extends Controller
             return redirect()->back()->with($st, $message);
         }
 
-        if($user <> null){
+        if ($user <> null) {
             $user = User::find($user->id);
-        }else if($client <> null){
+        } else if ($client <> null) {
             $user = Client::find($client->id);
         }
 
@@ -152,7 +152,6 @@ class ResetPasswordController extends Controller
                 } else if ($this->flag2 == true) {
                     Mail::to($client->email)->send(new sendMail($client, $this->link, $message));
                 }
-
                 $st = "success";
                 $message = "Link enviado para seu e-mail!!";
             } else {

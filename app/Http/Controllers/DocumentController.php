@@ -8,6 +8,8 @@ use App\Models\CLient;
 use App\Models\Document;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendMail;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
@@ -40,11 +42,25 @@ class DocumentController extends Controller
     {
         $data = $this->request->only('title', 'dueDate', 'document');
         $data['client_id'] = intval($idClient);
+
         $data['user_id'] = Auth::user()->id;
-        $data['dueDate'] = $this->convertDate($data['dueDate']);
+        if($data['dueDate'] <> null){
+            $data['dueDate'] = $this->convertDate($data['dueDate']);
+        }else{
+            $data['dueDate'] = NULL;
+        }
+
         $data['document'] = $this->upLoadPdf($this->request);
 
+        $client = Client::find($data['client_id']);
+
         if (Document::create($data)) {
+            $messageEmail = 'Documento recebido - PainelADM.';
+            $link = null;
+            $client['documentTitle'] = $data['title'];
+
+            Mail::to($client->email)->send(new sendMail($client, $link, $messageEmail));
+
             $st = "success";
             $message = "Documento anexado com sucesso!!";
         } else {
