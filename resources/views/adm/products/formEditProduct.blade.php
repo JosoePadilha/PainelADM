@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Alterando de produtos</h1>
+                    <h1></h1>
                 </div>
             </div>
         </div>
@@ -19,6 +19,7 @@
                 <div class="col-md-12 col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
+                            Alterando de produtos
                         </div>
                         <form action="{{ route ('productEdit', $product->id) }}" enctype="multipart/form-data" method="post">
                             @method('PUT')

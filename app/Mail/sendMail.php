@@ -43,7 +43,7 @@ class sendMail extends Mailable
                 ]);
         } else {
             return $this->subject($this->message)
-                ->view('site.messageMail', [
+                ->markdown('site.messageMail', [
                     'user' => $this->user,
                     'link' => $this->link,
                 ]);

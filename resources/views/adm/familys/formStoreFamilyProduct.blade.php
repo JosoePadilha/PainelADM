@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Cadastro de família de produtos</h1>
+            <h1></h1>
           </div>
         </div>
       </div>
@@ -19,6 +19,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
+                            Cadastro de família de produtos
                         </div>
                         <form action="/storeFamily" method="post">
                             @csrf

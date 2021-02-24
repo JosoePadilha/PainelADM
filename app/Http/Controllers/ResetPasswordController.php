@@ -29,7 +29,7 @@ class ResetPasswordController extends Controller
 
     public function forgetPassword()
     {
-        return view('forgetPassword');
+        return view('public.forgetPassword');
     }
 
     public function resetPasswordUser(ResetPasswordRequest $request, $id)
@@ -101,7 +101,7 @@ class ResetPasswordController extends Controller
 
         if ($tokenRemember) {
             if ($token == $tokenRemember->token) {
-                return view('formResetPassword')->with([
+                return view('public.formResetPassword')->with([
                     'user' => $user,
                     'token' => $token,
                 ]);
@@ -119,6 +119,7 @@ class ResetPasswordController extends Controller
         $this->validate($this->request, [
             'email' => 'required|email:rfc,filter|min:10|max:255'
         ]);
+
         $data = $this->request->only('email');
         $user = DB::table('users')->where('email', '=', $data['email'])->first();
         $client = DB::table('clients')->where('email', '=', $data['email'])->first();
