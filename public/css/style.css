@@ -7,6 +7,10 @@
     color: white;
 }
 
+.brand{
+    height: 80px;
+}
+
 #description{
     width: 250px;
     height: 180px;
@@ -14,9 +18,9 @@
 
 
 .logo{
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
     color: #FFF;
 
     /* Agora a mágica */
@@ -53,4 +57,11 @@
     width: 80px;
     height:80px;
     border-radius: 50%;
+}
+
+.carouselImg{
+    max-width: 100%;
+    width: 900px;
+    height: 300px;
+    object-fit: cover;
 }

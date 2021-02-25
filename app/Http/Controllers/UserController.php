@@ -32,10 +32,16 @@ class UserController extends Controller
         $numberUsers = $this->colaborattorTotal();
         $numberDocuments = $this->expiredDocuments();
         $numberProducts = $this->productsTotal();
-
+        $imagesMarketing = DB::table('images')->get();
 
         if (Auth::user()->type == "Adm" || Auth::user()->type == "Usuario") {
-            return view('users.dashboard', compact('numberClients', 'numberUsers', 'numberDocuments', 'numberProducts'));
+            return view('users.dashboard',[
+                'numberClients' =>$numberClients,
+                'numberUsers' => $numberUsers,
+                'numberDocuments' => $numberDocuments,
+                'numberProducts' => $numberProducts,
+                'imagesMarketing' => $imagesMarketing,
+            ]);
         } else if (Auth::user()->type == "Cliente") {
             return view('clients.dashboard');
         } else {

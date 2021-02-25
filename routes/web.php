@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CLientController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FamilyProductController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ResetPasswordController;
 
@@ -29,10 +30,9 @@ Route::post('/sendMailReset', [ResetPasswordController::class, 'sendMailReset'])
 Route::get('/resetPassword/{token}/{email}', [ResetPasswordController::class, 'resetPassword'])->name('resetPassword');
 Route::post('/resetPasswordUser/{user}', [ResetPasswordController::class, 'resetPasswordUser'])->name('resetPasswordUser');
 
-//Route::get('/resetPassword', [loginController::class, 'resetPassword'])->name('resetPassword');
-
 Route::middleware(['auth'])->group(function(){
     Route::middleware(['CheckAdm'])->group(function(){
+
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
         //Collaborators
@@ -75,16 +75,23 @@ Route::middleware(['auth'])->group(function(){
         Route::any('/searchFamily', [FamilyProductController::class, 'searchFamily'])->name('searchFamily');
 
         //Products
-        Route::get('createProduct', [ProductsController::class, 'create'])->name('createProduct');
+        Route::get('/createProduct', [ProductsController::class, 'create'])->name('createProduct');
         Route::post('/storeProduct', [ProductsController::class, 'store'])->name('storeProduct');
         Route::get('/showProducts', [ProductsController::class, 'showProductsFamily'])->name('showProducts');
         Route::get('/destroyProduct/{id}', [ProductsController::class, 'destroy'])->name('destroyProduct');
         Route::get('/editProduct/{id}', [ProductsController::class, 'edit'])->name('editProduct');
         Route::put('/productEdit/{id}', [ProductsController::class, 'update'])->name('productEdit');
         Route::any('/searchProduct', [ProductsController::class, 'searchProduct'])->name('searchProduct');
+
+        //Images
+        Route::get('/createImage', [ImageController::class, 'index'])->name('createImage');
+        Route::post('/storeImage', [ImageController::class, 'store'])->name('storeImage');
+        Route::get('/showImages', [ImageController::class, 'showImages'])->name('showImages');
+        Route::get('/destroyImage/{id}', [ImageController::class, 'destroy'])->name('destroyImage');
         // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
         //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
         // });
     });
+
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

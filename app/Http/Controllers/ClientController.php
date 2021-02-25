@@ -18,15 +18,6 @@ class ClientController extends Controller
     {
         $this->request = $request;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -96,7 +87,6 @@ class ClientController extends Controller
      */
     public function showClients()
     {
-        //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.clients.showClients', [
             'clients' => DB::table('clients')->orderby('name')->paginate(9)
         ]);
@@ -105,7 +95,6 @@ class ClientController extends Controller
 
     public function viewClientDocument()
     {
-        //$users = $user::orderBy('name', 'asc')->paginate(4);
         return view('adm.documents.showClientDocument', [
             'clients' => DB::table('clients')
                 ->orWhere('status', '=', 'Ativo')

@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
+    <a href="#" class="brand brand-link">
         <img class="logo img-circle elevation-3" style="opacity: .8" src="{{ url('storage/protelim.jpg') }}" alt="logo">
         <span class="brand-text font-weight-light">Painel ADM</span>
     </a>
@@ -130,6 +130,30 @@
                             <a href="/showClientDocument" class="nav-link">
                                 <i class="fa fa-file-pdf" aria-hidden="true"></i>
                                 <p>Enviar documento</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-images"></i>
+                        <p> Gestão da marca
+                        <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/createImage" class="nav-link">
+                                <i class="far fa-file-image"></i>
+                                <p>Cadastrar imagens</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/showImages" class="nav-link">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                <p>Listar imagens</p>
                             </a>
                         </li>
                     </ul>

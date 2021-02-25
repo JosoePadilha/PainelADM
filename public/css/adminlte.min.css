@@ -11561,8 +11561,9 @@ html {
 
 .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse .wrapper .brand-link,
 .layout-navbar-fixed.sidebar-mini.sidebar-collapse .wrapper .brand-link {
-    height: calc(3.5rem + 1px);
+
     width : 4.6rem
+
 }
 
 .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse .wrapper .brand-link.text-sm,
@@ -13261,7 +13262,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .user-panel {
-    height: 80px;
+    height: 90px;
     position: relative
 }
 
@@ -13280,6 +13281,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .user-panel .image {
+    margin-top: 10px;
     display     : inline-block;
     /* padding-left: .8rem */
 }
@@ -13295,7 +13297,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .user-panel .info {
-    display: inline-block;
+    display: inline-flex;
     padding: 5px 5px 5px 10px
 }
 
