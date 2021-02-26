@@ -22,7 +22,7 @@ class ImageController extends Controller
 
     public function index()
     {
-        return view('marketing.formCreate');
+        return view('adm.marketing.formCreate');
     }
 
 
@@ -44,7 +44,7 @@ class ImageController extends Controller
     }
 
     public function showImages(){
-        return view('marketing.showImages', [
+        return view('adm.marketing.showImages', [
             'images' => DB::table('images')->orderby('name')->paginate(9)
         ]);
     }

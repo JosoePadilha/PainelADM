@@ -27,7 +27,7 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="card-footer">
                                             <a data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                                                <img src="{{ url('storage/'.$image->path) }}" class="img-fluid mb-2" alt="white sample"/>
+                                                <img src="{{ url('storage/'.$image->path) }}" class="carouselImg img-fluid mb-2" alt="white sample"/>
                                             </a>
                                             <button type="button" data-type="delete" data-rout="{{ route ('destroyImage', $image->id) }}" class="btn btn-sm bg-danger modalConfirma">
                                                 <i class="fas fa-trash"></i>

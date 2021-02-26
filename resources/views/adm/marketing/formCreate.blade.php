@@ -27,12 +27,12 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6 col-sm-6">
                                         <label>*Nome da imagem</label>
-                                        <input type="text" minlength="5" class="form-control"
+                                        <input required type="text" minlength="5" class="form-control"
                                             name="name" id="name" placeholder="Nome da imagem" value="{{ old('name') }}">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6">
                                         <label class="control-label">*Imagem</label>
-                                        <input type="file" class="form-control-file" id="avatar" name="avatar">
+                                        <input required type="file" class="form-control-file" id="avatar" name="avatar">
                                     </div>
                                 </div>
                             </div>

@@ -33,6 +33,7 @@ class UserController extends Controller
         $numberDocuments = $this->expiredDocuments();
         $numberProducts = $this->productsTotal();
         $imagesMarketing = DB::table('images')->get();
+        $warnings = DB::table('warnings')->get();
 
         if (Auth::user()->type == "Adm" || Auth::user()->type == "Usuario") {
             return view('users.dashboard',[
@@ -41,6 +42,7 @@ class UserController extends Controller
                 'numberDocuments' => $numberDocuments,
                 'numberProducts' => $numberProducts,
                 'imagesMarketing' => $imagesMarketing,
+                'warnings' => $warnings,
             ]);
         } else if (Auth::user()->type == "Cliente") {
             return view('clients.dashboard');

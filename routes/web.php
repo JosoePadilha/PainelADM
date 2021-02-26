@@ -9,6 +9,7 @@ use App\Http\Controllers\FamilyProductController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\WarningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,12 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/storeImage', [ImageController::class, 'store'])->name('storeImage');
         Route::get('/showImages', [ImageController::class, 'showImages'])->name('showImages');
         Route::get('/destroyImage/{id}', [ImageController::class, 'destroy'])->name('destroyImage');
+
+        //Warnings
+        Route::get('/createWarning', [WarningController::class, 'index'])->name('createWarning');
+        Route::post('/storeWarning', [WarningController::class, 'store'])->name('storeWarning');
+        Route::get('/showWarnings', [WarningController::class, 'show'])->name('showWarnings');
+        Route::get('/destroyWarning/{id}', [WarningController::class, 'destroy'])->name('destroyWarning');
         // Route::get('/editDocument/{idUser}/{idDocument}', function($idUser, $idDocument){
         //     return [DocumentController::class, 'edit', compact($idUser, $idDocument)];
         // });

@@ -159,6 +159,30 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-comments"></i>
+                        <p> Avisos
+                        <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/createWarning" class="nav-link">
+                                <i class="far fa-comment-dots"></i>
+                                <p>Cadastrar aviso</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/showWarnings" class="nav-link">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                <p>Listar avisos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <a href="/logout" class="nav-link">
                         <i class="fa fa-reply-all"></i>
                         <p>Sair</p>
