@@ -31,8 +31,8 @@ Route::post('/sendMailReset', [ResetPasswordController::class, 'sendMailReset'])
 Route::get('/resetPassword/{token}/{email}', [ResetPasswordController::class, 'resetPassword'])->name('resetPassword');
 Route::post('/resetPasswordUser/{user}', [ResetPasswordController::class, 'resetPasswordUser'])->name('resetPasswordUser');
 
-Route::middleware(['auth'])->group(function(){
-    Route::middleware(['CheckAdm'])->group(function(){
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['CheckAdm'])->group(function () {
 
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
@@ -102,3 +102,10 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+Route::middleware(['auth:client', 'CheckClient'])->group(function () {
+    Route::get('/dashboardClient', [UserController::class, 'dashboardClient'])->name('dashboardClient');
+    Route::get('/showProductsCLient', [ProductsController::class, 'showProductsFamily'])->name('showProductsCLient');
+    Route::any('/searchProductClient', [ProductsController::class, 'searchProduct'])->name('searchProductClient');
+});
+

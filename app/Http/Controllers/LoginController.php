@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CLient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -20,7 +22,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $data = $request->only('email', 'password');
+        $data = $request->only('email', 'password', 'remember');
         $credentials = [
             'email' => $data['email'],
             'password' => $data['password'],
@@ -41,23 +43,50 @@ class LoginController extends Controller
             $message = "Seja bem vindo " . session()->get('firstNameUser');
             return redirect()->intended('dashboard')->with($st, $message);
         } else {
-            $st = "error";
-            $message = "Verifique os dados informados!!";
+
+            if (Auth::guard('client')->attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
+                if (Auth::guard('client')->check()) {
+
+                    $firstNameUser = Auth::guard('client')->user()->name;
+                    $firstNameUser = explode(" ", $firstNameUser);
+
+                    Session::put('firstNameUser', $firstNameUser[0]);
+
+                    $request->session()->regenerate();
+                    $st = "success";
+                    $message = "Seja bem vindo";
+                    return redirect()->route('dashboardClient')->with($st, $message);
+                }
+            } else {
+                $st = "error";
+                $message = "Verifique os dados informados!!";
+            }
             return redirect()->back()->with($st, $message);
         }
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        if (Auth::check()) {
 
-        $request->session()->invalidate();
+            Auth::logout();
 
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
 
-        Session::flush();
+            $request->session()->regenerateToken();
+
+            Session::flush();
+        } else if (Auth::guard('client')->check()) {
+
+            Auth::guard('admin')->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            Session::flush();
+        }
 
         return redirect('/');
     }
-
 }

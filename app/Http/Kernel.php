@@ -45,7 +45,9 @@ class Kernel extends HttpKernel
         ],
         'CheckAdm' => [
             \App\Http\Middleware\CheckAdm::class,
-
+        ],
+        'CheckClient' => [
+            \App\Http\Middleware\CheckClient::class,
         ],
     ];
 

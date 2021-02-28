@@ -7,6 +7,7 @@ use App\Models\FamilyProducts;
 use App\Models\Products;
 use Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -141,7 +142,7 @@ class ProductsController extends Controller
             $st = "error";
             $message = "Não foi possível excluir o produto!!";
         } else {
-            if($product->avatar){
+            if ($product->avatar) {
                 Storage::delete($product->avatar);
             }
 
@@ -197,9 +198,17 @@ class ProductsController extends Controller
                 }
             })->paginate();
 
-        return view('adm.products.showProducts', [
-            'products' => $products,
-        ]);
+        if (Auth::user()->type == "Adm") {
+            return view('adm.products.showProducts', [
+                'products' => $products,
+            ]);
+        } else if (Auth::guard('client')->user()->type == 'Cliente') {
+            return view('clients.showProductsCLient', [
+                'products' => $products,
+            ]);
+        } else {
+            return redirect()->route('/');
+        }
     }
 
     public function searchProduct(Request $request)
@@ -211,20 +220,40 @@ class ProductsController extends Controller
             if (!$product) {
                 $st = "error";
                 $message = "Não há registros!!";
-                return redirect()->route('showProducts');
+
+                if (Auth::user()->type == "Adm") {
+                    return redirect()->route('showProducts');
+                } else if (Auth::guard('client')->user()->type == 'Cliente') {
+                    return redirect()->route('showProductsCLient');
+                }
             } else {
                 $st = "success";
                 $message = "Dados encontrados!!";
 
-                return view('adm.products.showProducts', [
-                    'products' => $product,
-                    'filters' => $filters,
-                    'st' => $st,
-                    'message' => $message,
-                ]);
+                if (Auth::user()->type == "Adm") {
+                    return view('adm.products.showProducts', [
+                        'products' => $product,
+                        'filters' => $filters,
+                        'st' => $st,
+                        'message' => $message,
+                    ]);
+                } else if (Auth::guard('client')->user()->type == 'Cliente') {
+                    return view('clients.showProductsCLient', [
+                        'products' => $product,
+                        'filters' => $filters,
+                        'st' => $st,
+                        'message' => $message,
+                    ]);
+                } else {
+                    return redirect()->route('/');
+                }
             }
         } else {
-            return redirect()->route('showProducts');
+            if (Auth::user()->type == "Adm") {
+                return redirect()->route('showProducts');
+            } else if (Auth::guard('client')->user()->type == 'Cliente') {
+                return redirect()->route('showProductsCLient');
+            }
         }
     }
 
@@ -247,5 +276,4 @@ class ProductsController extends Controller
 
         return $products;
     }
-
 }

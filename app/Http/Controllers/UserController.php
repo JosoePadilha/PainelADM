@@ -36,16 +36,34 @@ class UserController extends Controller
         $warnings = DB::table('warnings')->get();
 
         if (Auth::user()->type == "Adm" || Auth::user()->type == "Usuario") {
-            return view('users.dashboard',[
-                'numberClients' =>$numberClients,
+            return view('users.dashboard', [
+                'numberClients' => $numberClients,
                 'numberUsers' => $numberUsers,
                 'numberDocuments' => $numberDocuments,
                 'numberProducts' => $numberProducts,
                 'imagesMarketing' => $imagesMarketing,
                 'warnings' => $warnings,
             ]);
-        } else if (Auth::user()->type == "Cliente") {
-            return view('clients.dashboard');
+        } else {
+            dd('asds');
+            return redirect('/');
+        }
+    }
+
+    public function dashboardCLient()
+    {
+        $expiredDocumentsClient = $this->expiredDocumentsClient(Auth::guard('client')->user()->id);
+        $documentsClient = $this->documentsClient(Auth::guard('client')->user()->id);
+        $imagesMarketing = DB::table('images')->get();
+        $warnings = DB::table('warnings')->get();
+
+        if (Auth::guard('client')->user()->type == 'Cliente') {
+            return view('clients.dashboard', [
+                'expiredDocumentsClient' => $expiredDocumentsClient,
+                'documentsClient' => $documentsClient,
+                'imagesMarketing' => $imagesMarketing,
+                'warnings' => $warnings,
+            ]);
         } else {
             return redirect('/');
         }
@@ -293,6 +311,29 @@ class UserController extends Controller
         $documents = DB::table('documents')
             ->join('clients', 'clients.id', '=', 'documents.client_id')
             ->where('dueDate', '<', date("Y-m-d h:i:s"))
+            ->where('clients.status', '=', 'Ativo')
+            ->count();
+
+        return $documents;
+    }
+
+    public function expiredDocumentsClient($id)
+    {
+        $documents = DB::table('documents')
+            ->join('clients', 'clients.id', '=', 'documents.client_id')
+            ->where('dueDate', '<', date("Y-m-d h:i:s"))
+            ->where('clients.id', '=', $id)
+            ->where('clients.status', '=', 'Ativo')
+            ->count();
+
+        return $documents;
+    }
+
+    public function documentsClient($id)
+    {
+        $documents = DB::table('documents')
+            ->join('clients', 'clients.id', '=', 'documents.client_id')
+            ->where('clients.id', '=', $id)
             ->where('clients.status', '=', 'Ativo')
             ->count();
 
