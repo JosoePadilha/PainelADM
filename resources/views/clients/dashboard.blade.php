@@ -25,7 +25,12 @@
                             <div class="icon">
                                 <i class="fa fa-folder-open"></i>
                             </div>
-                            <a href="/showDocumentsVanquished" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                            @if ((Auth::user()->type == 'Adm'))
+                                <a href="/showDocumentsVanquished" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                            @endif
+                            @if (Auth::guard('client')->check())
+                                <a href="{{ route ('documentsCLient', Auth::guard('client')->user()->id) }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -37,7 +42,12 @@
                             <div class="icon">
                                 <i class="fa fa-folder-open"></i>
                             </div>
-                            <a href="/showDocumentsVanquished" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                            @if ((Auth::user()->type == 'Adm'))
+                                <a href="/showDocumentsVanquished" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                            @endif
+                            @if (Auth::guard('client')->check())
+                                <a href="{{ route ('vanquishiedCLient', Auth::guard('client')->user()->id) }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                 <div class="row">

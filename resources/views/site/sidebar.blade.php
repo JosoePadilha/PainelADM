@@ -8,15 +8,15 @@
         <div class="user-panel">
             <div class="image">
                 @if(Auth::user()->avatar)
-                    <img src="{{ url('storage/'.Auth::user()->avatar) }}" class="avatar img-circle elevation-3" alt="User Image">
-                @else
-                    @if(Auth::guard('client')->check() && Auth::guard('client')->user()->type == 'Cliente')
+                        <img src="{{ url('storage/'.Auth::user()->avatar) }}" class="avatar img-circle elevation-3" alt="User Image">
+                    @else
+                    @if(Auth::guard('client')->check() && Auth::guard('client')->user()->avatar != "")
                         <img src="{{ url('storage/'.Auth::guard('client')->user()->avatar) }}" class="avatar img-circle elevation-3" alt="User Image">
                     @else
                         <img src="{{ url('storage/avatarDefault.png') }}" class="avatar img-circle elevation-3" alt="User Image">
                     @endif
-                    <img src="{{ url('storage/avatarDefault.png') }}" class="avatar img-circle elevation-3" alt="User Image">
                 @endif
+
 
             </div>
             <div class="info">

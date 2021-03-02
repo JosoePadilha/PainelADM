@@ -146,6 +146,33 @@ class DocumentController extends Controller
         ]);
     }
 
+    public function vanquishiedCLient($id)
+    {
+        $documents = DB::table('clients')
+            ->join('documents', 'clients.id', '=', 'documents.client_id')
+            ->where('dueDate', '<', date("Y-m-d h:i:s"))
+            ->where('clients.status', '=', 'Ativo')
+            ->where('clients.id', '=', $id)
+            ->orderBy('documents.title', 'asc')->paginate();
+
+        return view('clients.showVanquishied', [
+            'documents' => $documents,
+        ]);
+    }
+
+    public function documentsCLient($id)
+    {
+        $documents = DB::table('clients')
+            ->join('documents', 'clients.id', '=', 'documents.client_id')
+            ->where('clients.status', '=', 'Ativo')
+            ->where('clients.id', '=', $id)
+            ->orderBy('documents.title', 'asc')->paginate();
+
+        return view('clients.showDocumentsCLient', [
+            'documents' => $documents,
+        ]);
+    }
+
     public function searchClientsActiveDocument(Request $request)
     {
         if (isset($request->filter)) {

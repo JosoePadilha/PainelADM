@@ -107,5 +107,6 @@ Route::middleware(['auth:client', 'CheckClient'])->group(function () {
     Route::get('/dashboardClient', [UserController::class, 'dashboardClient'])->name('dashboardClient');
     Route::get('/showProductsCLient', [ProductsController::class, 'showProductsFamily'])->name('showProductsCLient');
     Route::any('/searchProductClient', [ProductsController::class, 'searchProduct'])->name('searchProductClient');
+    Route::get('/vanquishiedCLient/{id}', [DocumentController::class, 'vanquishiedCLient'])->name('vanquishiedCLient');
+    Route::get('/documentsCLient/{id}', [DocumentController::class, 'documentsCLient'])->name('documentsCLient');
 });
-

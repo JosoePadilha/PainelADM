@@ -16,7 +16,7 @@
     <section class="content animate__animated animate__fadeIn">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-5 col-sm-6">
+                <div class="col-md-12 col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
                             Emissão de documento
@@ -25,26 +25,25 @@
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 col-sm-12">
+                                    <div class="form-group col-md-4 col-sm-12">
                                         <label>*Título documento</label>
                                         <input type="text" required minlength="5" class="form-control"
                                             name="title" value="{{ old('title') }}" id="title" placeholder="Título documento">
                                     </div>
-                                    <div class="form-group col-md-6 col-sm-12">
+                                    <div class="form-group col-md-4 col-sm-12">
                                         <label>Data vencimento</label>
                                         <input type="text" name="dueDate" id="dueDate" onblur="javascript: validarData(this.value, this);"
                                             class="form-control" data-mask="00/00/0000" value="{{ old('dueDate') }}" min="01/01/2020" placeholder="Data de vencimento">
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6 col-sm-12">
-                                        <div class="btn btn-default btn-file col start">
-                                            <i class="fas fa-paperclip"></i> Anexar
-                                            <input required id="document" type="file" name="document">
+                                        <div class="form-group col-md-4 col-sm-12">
+                                            <label>*Documento</label>
+                                            <div class="btn btn-default btn-file col start">
+                                                <i class="fas fa-paperclip"></i> Anexar
+                                                <input required id="document" type="file" name="document">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                                 <a class="btn btn-success" href="{{ URL::previous() }}" role="button">Voltar</a>
@@ -52,7 +51,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-6">
+                <div class="col-md-12 col-sm-6">
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">Documentos anteriores</h3>
@@ -87,7 +86,7 @@
                                             @endif
                                             </td>
                                             <td class="text-right py-0 align-middle">
-                                                <div class="btn-group btn-group-sm">
+                                                <div class="btn-group btn-group-sm positionBadge">
                                                     @if ((date("Y-m-d")) > $document->dueDate && $document->dueDate <> NULL)
                                                       <span class="badge badge-danger">Vencido</span>
                                                     @else
@@ -101,7 +100,7 @@
                                                     @endif
                                                 </div>
                                             </td>
-                                            <td class="text-right py-0 align-middle">
+                                            <td class="align-middle">
                                                 <div class="btn-group btn-group-sm">
                                                     <a data-type="delete" data-rout="{{ route ('destroyDocument', $document->id) }}"
                                                         type="button" data-dismiss="modal" class="btn btn-danger modalConfirma">

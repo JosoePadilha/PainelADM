@@ -59,6 +59,10 @@
     border-radius: 50%;
 }
 
+.positionBadge{
+    float: left;
+}
+
 .carouselImg{
     max-width: 100%;
     width: 900px;
